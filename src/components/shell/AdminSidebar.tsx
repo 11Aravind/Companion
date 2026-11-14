@@ -41,9 +41,9 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
       <div>
         {/* Brand */}
         <div className="h-16 flex items-center justify-between px-6 border-b border-[#1B2C4F]">
-          <div className="flex items-center gap-2.5">
+          <Link href="/" className="flex items-center gap-2.5" title="Go to Home">
             <CompanionLogo variant="dark" size="sm" />
-          </div>
+          </Link>
 
           {/* Close button for mobile */}
           {onClose && (

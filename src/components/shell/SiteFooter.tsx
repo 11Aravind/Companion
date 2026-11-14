@@ -8,7 +8,9 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-10">
           {/* Brand Col */}
           <div className="space-y-3 md:col-span-1">
-            <span className="text-xl font-bold tracking-tight text-white block">Companion</span>
+            <Link href="/" className="inline-block hover:opacity-90 transition-opacity" title="Go to Home">
+              <span className="text-xl font-bold tracking-tight text-white block">Companion</span>
+            </Link>
             <p className="text-xs text-neutral-400 leading-relaxed font-normal">
               On-demand verified personal accompaniment for appointments, shopping, dining, and city travel.
             </p>

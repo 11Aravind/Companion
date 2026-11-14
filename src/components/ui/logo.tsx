@@ -1,10 +1,12 @@
 import * as React from 'react';
+import Link from 'next/link';
 import { cn } from '@/lib/utils';
 
-export interface LogoProps extends React.SVGProps<SVGSVGElement> {
+export interface LogoProps extends Omit<React.SVGProps<SVGSVGElement>, 'href'> {
   size?: 'sm' | 'md' | 'lg' | 'xl';
   variant?: 'dark' | 'light' | 'monochrome';
   showText?: boolean;
+  href?: string | false;
   className?: string;
 }
 
@@ -19,6 +21,7 @@ export function CompanionLogo({
   size = 'md',
   variant = 'light',
   showText = true,
+  href,
   className,
   ...props
 }: LogoProps) {
@@ -28,8 +31,8 @@ export function CompanionLogo({
   // variant 'light': on white/light background (black logo + black text)
   const isDarkBg = variant === 'dark';
 
-  return (
-    <div className={cn('inline-flex items-center gap-2.5 select-none', className)}>
+  const content = (
+    <div className={cn('inline-flex items-center gap-2.5 select-none cursor-pointer', className)}>
       {/* Geometric Vector Emblem */}
       <svg
         width={iconSize}
@@ -37,7 +40,7 @@ export function CompanionLogo({
         viewBox="0 0 48 48"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
-        className="shrink-0 transition-transform hover:scale-105"
+        className="shrink-0 transition-transform group-hover:scale-105"
         {...props}
       >
         {/* Outer Squircle Container */}
@@ -96,5 +99,15 @@ export function CompanionLogo({
       )}
     </div>
   );
+
+  if (href) {
+    return (
+      <Link href={href} className="inline-flex items-center group transition-opacity hover:opacity-90">
+        {content}
+      </Link>
+    );
+  }
+
+  return content;
 }
 

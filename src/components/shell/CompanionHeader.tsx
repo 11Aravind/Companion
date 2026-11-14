@@ -48,7 +48,7 @@ export function CompanionHeader({
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
           {/* Brand & Companion Portal Tag */}
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <Link href="/companion/dashboard" className="flex items-center shrink-0">
+            <Link href="/" className="flex items-center shrink-0" title="Go to Home">
               <CompanionLogo variant="light" size="sm" />
             </Link>
             <Badge

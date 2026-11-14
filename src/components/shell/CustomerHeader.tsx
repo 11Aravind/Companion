@@ -38,7 +38,7 @@ export function CustomerHeader({
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
           {/* Brand & Location Detector */}
           <div className="flex items-center gap-3 sm:gap-6 min-w-0">
-            <Link href="/dashboard" className="flex items-center shrink-0">
+            <Link href="/" className="flex items-center shrink-0" title="Go to Home">
               <CompanionLogo variant="light" size="sm" />
             </Link>
 
