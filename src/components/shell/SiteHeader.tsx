@@ -41,22 +41,22 @@ export function SiteHeader() {
             href="/#safety"
             className="flex items-center gap-1.5 hover:text-navy-900 transition-colors"
           >
-            <ShieldCheck className="h-4 w-4 text-yellow-500" />
+            <ShieldCheck className="h-4 w-4 text-amber-500 fill-amber-400/20" />
             Safety & Verification
           </Link>
         </nav>
 
         {/* Action Buttons & Mobile Hamburger */}
         <div className="flex items-center gap-2 sm:gap-3">
-          <div className="hidden sm:flex items-center gap-2">
+          <div className="hidden sm:flex items-center gap-3">
             <Link href="/login">
-              <Button variant="ghost" size="sm" className="font-semibold text-charcoal hover:text-navy-900">
+              <Button variant="ghost" size="sm" className="font-semibold text-charcoal hover:text-navy-900 text-sm">
                 Sign In
               </Button>
             </Link>
             <Link href="/signup">
-              <Button size="sm" className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold shadow-subtle">
-                Get Started <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
+              <Button size="sm" className="bg-[#F59E0B] hover:bg-[#D97706] text-slate-950 font-bold px-4 py-2 rounded-xl text-sm shadow-sm">
+                Get Started <ArrowRight className="ml-1 h-3.5 w-3.5" />
               </Button>
             </Link>
           </div>
