@@ -43,21 +43,21 @@ export function CompanionHeader({
 
   return (
     <>
-      <header className="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/95 backdrop-blur-md">
+      <header className="sticky top-0 z-40 w-full border-b border-charcoal-border bg-white/95 backdrop-blur-md">
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
           {/* Brand & Companion Portal Tag */}
           <div className="flex items-center gap-2.5 sm:gap-3">
             <Link href="/companion/dashboard" className="flex items-center gap-2 shrink-0">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-navy-900 text-white shadow-sm">
-                <HeartHandshake className="h-5 w-5 text-emerald-400" />
+              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-navy-900 text-white shadow-subtle">
+                <HeartHandshake className="h-5 w-5 text-accent" />
               </div>
-              <span className="text-lg font-bold text-navy-950 hidden xs:inline">Companion</span>
+              <span className="text-lg font-bold text-navy-900 hidden xs:inline">Companion</span>
             </Link>
             <Badge
               variant="secondary"
-              className="hidden sm:inline-flex bg-navy-100 text-navy-900 font-semibold text-xs"
+              className="hidden sm:inline-flex bg-navy-50 text-navy-900 font-bold text-xs border border-charcoal-border"
             >
-              Companion Portal
+              Partner Portal
             </Badge>
           </div>
 
@@ -65,18 +65,18 @@ export function CompanionHeader({
           <div className="flex items-center gap-2 sm:gap-3">
             <button
               onClick={toggle}
-              className={`flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1.5 rounded-full text-xs font-semibold transition-all shadow-sm border ${
+              className={`flex items-center gap-1.5 sm:gap-2 px-3 py-1.5 rounded-full text-xs font-bold transition-all shadow-subtle border ${
                 onlineState
-                  ? 'bg-emerald-50 text-emerald-700 border-emerald-300 ring-2 ring-emerald-500/20'
-                  : 'bg-slate-100 text-slate-600 border-slate-300'
+                  ? 'bg-accent-light text-accent border-accent/30 ring-2 ring-accent/20'
+                  : 'bg-navy-50 text-charcoal-muted border-charcoal-border'
               }`}
             >
               <span
                 className={`h-2.5 w-2.5 rounded-full ${
-                  onlineState ? 'bg-emerald-500 animate-pulse' : 'bg-slate-400'
+                  onlineState ? 'bg-accent animate-pulse' : 'bg-charcoal-muted'
                 }`}
               />
-              <span>{onlineState ? 'Online' : 'Offline'}</span>
+              <span>{onlineState ? 'Available Now' : 'Offline'}</span>
             </button>
 
             {/* Desktop Navigation Links */}
@@ -85,7 +85,7 @@ export function CompanionHeader({
                 <Button
                   variant={pathname === '/companion/dashboard' ? 'default' : 'ghost'}
                   size="sm"
-                  className="text-xs sm:text-sm font-medium"
+                  className="text-xs sm:text-sm font-semibold"
                 >
                   Requests
                 </Button>
@@ -94,7 +94,7 @@ export function CompanionHeader({
                 <Button
                   variant={pathname.startsWith('/companion/availability') ? 'default' : 'ghost'}
                   size="sm"
-                  className="text-xs sm:text-sm font-medium"
+                  className="text-xs sm:text-sm font-semibold"
                 >
                   Availability
                 </Button>
@@ -103,7 +103,7 @@ export function CompanionHeader({
                 <Button
                   variant={pathname.startsWith('/companion/earnings') ? 'default' : 'ghost'}
                   size="sm"
-                  className="text-xs sm:text-sm font-medium"
+                  className="text-xs sm:text-sm font-semibold"
                 >
                   Earnings
                 </Button>
@@ -112,7 +112,7 @@ export function CompanionHeader({
                 <Button
                   variant={pathname.startsWith('/companion/verification') ? 'default' : 'ghost'}
                   size="sm"
-                  className="text-xs sm:text-sm font-medium"
+                  className="text-xs sm:text-sm font-semibold"
                 >
                   Verification
                 </Button>
@@ -121,7 +121,7 @@ export function CompanionHeader({
                 <Button
                   variant={pathname.startsWith('/companion/profile') ? 'default' : 'ghost'}
                   size="sm"
-                  className="text-xs sm:text-sm font-medium"
+                  className="text-xs sm:text-sm font-semibold"
                 >
                   <User className="h-4 w-4 mr-1" />
                   <span>Profile</span>
@@ -135,7 +135,7 @@ export function CompanionHeader({
             <button
               onClick={() => signOut()}
               title="Sign Out"
-              className="p-2 text-slate-400 hover:text-rose-600 rounded-lg hover:bg-slate-100 transition-colors ml-1"
+              className="p-2 text-charcoal-muted hover:text-rose-600 rounded-xl hover:bg-navy-50 transition-colors ml-1"
             >
               <LogOut className="h-4 w-4" />
             </button>
@@ -144,13 +144,13 @@ export function CompanionHeader({
       </header>
 
       {/* Mobile Fixed Bottom Navigation Bar */}
-      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-slate-200 px-2 py-1.5 flex items-center justify-around shadow-2xl safe-area-inset-bottom">
+      <nav className="md:hidden fixed bottom-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-t border-charcoal-border px-2 py-1.5 flex items-center justify-around shadow-floating safe-area-inset-bottom">
         <Link
           href="/companion/dashboard"
           className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-xl transition-all ${
             isNavActive('/companion/dashboard')
-              ? 'text-primary-600 font-bold'
-              : 'text-slate-500 hover:text-slate-900 font-medium'
+              ? 'text-navy-900 font-bold'
+              : 'text-charcoal-muted hover:text-navy-900 font-semibold'
           }`}
         >
           <LayoutDashboard className="h-5 w-5" />
@@ -161,8 +161,8 @@ export function CompanionHeader({
           href="/companion/availability"
           className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-xl transition-all ${
             isNavActive('/companion/availability')
-              ? 'text-primary-600 font-bold'
-              : 'text-slate-500 hover:text-slate-900 font-medium'
+              ? 'text-navy-900 font-bold'
+              : 'text-charcoal-muted hover:text-navy-900 font-semibold'
           }`}
         >
           <Calendar className="h-5 w-5" />
@@ -173,8 +173,8 @@ export function CompanionHeader({
           href="/companion/earnings"
           className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-xl transition-all ${
             isNavActive('/companion/earnings')
-              ? 'text-primary-600 font-bold'
-              : 'text-slate-500 hover:text-slate-900 font-medium'
+              ? 'text-navy-900 font-bold'
+              : 'text-charcoal-muted hover:text-navy-900 font-semibold'
           }`}
         >
           <CircleDollarSign className="h-5 w-5" />
@@ -185,8 +185,8 @@ export function CompanionHeader({
           href="/companion/verification"
           className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-xl transition-all ${
             isNavActive('/companion/verification')
-              ? 'text-primary-600 font-bold'
-              : 'text-slate-500 hover:text-slate-900 font-medium'
+              ? 'text-navy-900 font-bold'
+              : 'text-charcoal-muted hover:text-navy-900 font-semibold'
           }`}
         >
           <ShieldCheck className="h-5 w-5" />
@@ -197,8 +197,8 @@ export function CompanionHeader({
           href="/companion/profile"
           className={`flex flex-col items-center justify-center py-1 px-2.5 rounded-xl transition-all ${
             isNavActive('/companion/profile')
-              ? 'text-primary-600 font-bold'
-              : 'text-slate-500 hover:text-slate-900 font-medium'
+              ? 'text-navy-900 font-bold'
+              : 'text-charcoal-muted hover:text-navy-900 font-semibold'
           }`}
         >
           <User className="h-5 w-5" />

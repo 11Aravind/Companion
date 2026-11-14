@@ -37,16 +37,74 @@ export const DEFAULT_MAP_CENTER = {
   lng: 80.2522,
 };
 
-export const MAP_STYLES_CLEAN = [
+// Premium, modern mobility silver style (Uber/Airbnb inspired)
+export const MAP_STYLES_CLEAN: google.maps.MapTypeStyle[] = [
+  {
+    elementType: 'geometry',
+    stylers: [{ color: '#f7f8fa' }],
+  },
+  {
+    elementType: 'labels.icon',
+    stylers: [{ visibility: 'off' }],
+  },
+  {
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#737b89' }],
+  },
+  {
+    elementType: 'labels.text.stroke',
+    stylers: [{ color: '#ffffff' }, { weight: 3 }],
+  },
+  {
+    featureType: 'administrative.land_parcel',
+    stylers: [{ visibility: 'off' }],
+  },
+  {
+    featureType: 'administrative.neighborhood',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#20242c' }],
+  },
   {
     featureType: 'poi',
-    elementType: 'labels',
     stylers: [{ visibility: 'off' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: [{ color: '#ffffff' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#e8ebf0' }],
+  },
+  {
+    featureType: 'road',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#737b89' }],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry',
+    stylers: [{ color: '#ffffff' }],
+  },
+  {
+    featureType: 'road.highway',
+    elementType: 'geometry.stroke',
+    stylers: [{ color: '#d5dae3' }],
   },
   {
     featureType: 'transit',
-    elementType: 'labels',
     stylers: [{ visibility: 'off' }],
   },
+  {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [{ color: '#e2eaf4' }],
+  },
+  {
+    featureType: 'water',
+    elementType: 'labels.text.fill',
+    stylers: [{ color: '#737b89' }],
+  },
 ];
-

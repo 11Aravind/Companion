@@ -126,23 +126,23 @@ export default function AdminBookingsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-charcoal">
       {/* Title & Stats */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-navy-950">Bookings & Sessions Supervision</h2>
-          <p className="text-sm text-slate-500 mt-0.5">
-            Monitor real-time session progress, financial settlement fees, and emergency intervention overrides.
+          <h2 className="text-2xl font-black text-navy-900 tracking-tight">Bookings & Sessions Supervision</h2>
+          <p className="text-xs text-charcoal-muted mt-0.5">
+            Monitor real-time session progress, financial settlement fees, and emergency intervention overrides
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="primary" className="px-3 py-1 font-semibold">
+          <Badge variant="primary" className="px-3 py-1 font-bold">
             {bookings.filter((b) => b.status === 'active' || b.status === 'companion_arriving').length} In-Flight
           </Badge>
-          <Badge variant="success" className="px-3 py-1 font-semibold">
+          <Badge variant="success" className="px-3 py-1 font-bold">
             {bookings.filter((b) => b.status === 'completed').length} Completed
           </Badge>
-          <Badge variant="default" className="px-3 py-1 font-semibold">
+          <Badge variant="secondary" className="px-3 py-1 font-bold">
             {bookings.length} Total
           </Badge>
         </div>
@@ -150,24 +150,24 @@ export default function AdminBookingsPage() {
 
       {/* Search and Status Filters */}
       <div className="flex flex-col sm:flex-row gap-3">
-        <div className="relative flex-1">
-          <Search className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
+        <div className="flex-1">
           <Input
             placeholder="Search by customer, companion, category, or booking ID..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="pl-10"
+            icon={<Search className="h-4 w-4" />}
+            className="h-10 text-xs"
           />
         </div>
-        <div className="flex items-center gap-1.5 flex-wrap">
+        <div className="flex items-center gap-1.5 p-1 bg-white rounded-xl border border-charcoal-border shadow-subtle flex-wrap">
           {['all', 'active', 'companion_arriving', 'pending', 'completed', 'cancelled'].map((tab) => (
             <button
               key={tab}
               onClick={() => setStatusFilter(tab)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold capitalize transition-all ${
                 statusFilter === tab
-                  ? 'bg-navy-900 text-white shadow-sm'
-                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                  ? 'bg-navy-900 text-white shadow-subtle'
+                  : 'text-charcoal-muted hover:text-navy-900'
               }`}
             >
               {tab.replace('_', ' ')}
@@ -176,83 +176,83 @@ export default function AdminBookingsPage() {
         </div>
       </div>
 
-      {/* Bookings Table */}
-      <Card className="overflow-hidden border border-slate-200 shadow-sm">
+      {/* Bookings Table (Stripe Style) */}
+      <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-500">
+          <table className="w-full text-left text-xs">
+            <thead className="bg-[#F7F8FA] border-b border-charcoal-border text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
               <tr>
                 <th className="py-3 px-4">Booking ID</th>
                 <th className="py-3 px-4">Participants</th>
-                <th className="py-3 px-4">Activity Category</th>
+                <th className="py-3 px-4">Category</th>
                 <th className="py-3 px-4">Schedule</th>
-                <th className="py-3 px-4">Total (Platform 10%)</th>
+                <th className="py-3 px-4">Total (Take Rate)</th>
                 <th className="py-3 px-4">Status</th>
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 bg-white">
+            <tbody className="divide-y divide-charcoal-border/70 bg-white">
               {filtered.map((b) => (
-                <tr key={b.id} className="hover:bg-slate-50/70 transition-colors">
-                  <td className="py-3.5 px-4 font-mono text-xs text-slate-500">
+                <tr key={b.id} className="hover:bg-navy-50/50 transition-colors">
+                  <td className="py-3.5 px-4 font-mono text-[11px] text-charcoal-muted">
                     #{b.id.slice(0, 8)}
                   </td>
 
                   <td className="py-3.5 px-4">
                     <div className="text-xs">
-                      <div className="font-semibold text-navy-950 flex items-center gap-1">
-                        <span className="text-slate-400">Customer:</span> {b.customer_name}
+                      <div className="font-bold text-navy-900 flex items-center gap-1">
+                        <span className="text-charcoal-muted font-normal">Customer:</span> {b.customer_name}
                       </div>
-                      <div className="text-slate-600 flex items-center gap-1 mt-0.5">
-                        <span className="text-slate-400">Companion:</span> {b.companion_name}
+                      <div className="text-charcoal flex items-center gap-1 mt-0.5 font-medium">
+                        <span className="text-charcoal-muted font-normal">Companion:</span> {b.companion_name}
                       </div>
                     </div>
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <span className="text-xs font-semibold text-slate-800 block">{b.category_name}</span>
-                    <span className="text-[11px] text-slate-400 truncate max-w-xs block">
+                    <span className="text-xs font-bold text-navy-900 block">{b.category_name}</span>
+                    <span className="text-[11px] text-charcoal-muted truncate max-w-xs block">
                       {b.meeting_address}
                     </span>
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <div className="text-xs text-slate-800 font-medium">
+                    <div className="text-xs text-charcoal font-semibold">
                       {b.scheduled_date} at {b.scheduled_start_time}
                     </div>
-                    <span className="text-[11px] text-slate-500">{b.duration_hours} Hours Session</span>
+                    <span className="text-[11px] text-charcoal-muted">{b.duration_hours} Hours Session</span>
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <span className="font-bold text-navy-950 text-xs block">₹{b.total_amount}</span>
-                    <span className="text-[11px] text-emerald-600 font-semibold block">
+                    <span className="font-bold text-navy-900 text-xs block">₹{b.total_amount}</span>
+                    <span className="text-[11px] text-accent font-bold block">
                       Fee: ₹{b.platform_fee}
                     </span>
                   </td>
 
                   <td className="py-3.5 px-4">
                     {b.status === 'active' && (
-                      <Badge variant="primary" className="text-[11px] font-semibold animate-pulse">
+                      <Badge variant="primary" className="text-[10px] font-bold animate-pulse">
                         In Progress
                       </Badge>
                     )}
                     {b.status === 'companion_arriving' && (
-                      <Badge variant="warning" className="text-[11px] font-semibold">
-                        Arriving
+                      <Badge variant="warning" className="text-[10px] font-bold">
+                        En Route
                       </Badge>
                     )}
                     {b.status === 'completed' && (
-                      <Badge variant="success" className="text-[11px] font-semibold">
+                      <Badge variant="success" className="text-[10px] font-bold">
                         Completed
                       </Badge>
                     )}
                     {b.status === 'cancelled' && (
-                      <Badge variant="danger" className="text-[11px] font-semibold">
+                      <Badge variant="danger" className="text-[10px] font-bold">
                         Cancelled
                       </Badge>
                     )}
                     {b.status === 'pending' && (
-                      <Badge variant="default" className="text-[11px] font-semibold">
+                      <Badge variant="outline" className="text-[10px] font-bold">
                         Pending
                       </Badge>
                     )}
@@ -262,9 +262,9 @@ export default function AdminBookingsPage() {
                     <div className="flex items-center justify-end gap-1.5">
                       <Button
                         size="sm"
-                        variant="secondary"
+                        variant="outline"
                         onClick={() => setSelectedBooking(b)}
-                        className="text-xs h-8 px-2.5"
+                        className="text-xs h-7 px-2.5 font-bold border-charcoal-border"
                       >
                         <Eye className="h-3.5 w-3.5 mr-1" /> View
                       </Button>
@@ -274,7 +274,7 @@ export default function AdminBookingsPage() {
                           size="sm"
                           variant="danger"
                           onClick={() => setCancelModalBooking(b)}
-                          className="text-xs h-8 px-2"
+                          className="text-xs h-7 px-2 font-bold"
                           title="Admin Emergency Cancellation"
                         >
                           <XCircle className="h-3.5 w-3.5" />
@@ -287,7 +287,7 @@ export default function AdminBookingsPage() {
 
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="py-8 text-center text-slate-500">
+                  <td colSpan={7} className="py-8 text-center text-charcoal-muted">
                     No bookings found matching criteria.
                   </td>
                 </tr>
@@ -305,44 +305,44 @@ export default function AdminBookingsPage() {
           title={`Session Details: #${selectedBooking.id.slice(0, 8)}`}
         >
           <div className="space-y-4 text-xs">
-            <div className="grid grid-cols-2 gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <div className="grid grid-cols-2 gap-3 p-3.5 bg-navy-50 rounded-2xl border border-charcoal-border">
               <div>
-                <span className="text-slate-500 block">Customer</span>
-                <span className="font-bold text-navy-950 text-sm">{selectedBooking.customer_name}</span>
+                <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Customer</span>
+                <span className="font-bold text-navy-900 text-sm">{selectedBooking.customer_name}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Companion</span>
-                <span className="font-bold text-navy-950 text-sm">{selectedBooking.companion_name}</span>
+                <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Companion</span>
+                <span className="font-bold text-navy-900 text-sm">{selectedBooking.companion_name}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Category</span>
-                <span className="font-semibold text-slate-800">{selectedBooking.category_name}</span>
+                <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Category</span>
+                <span className="font-bold text-charcoal">{selectedBooking.category_name}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Status</span>
-                <span className="font-bold uppercase text-primary-600">{selectedBooking.status}</span>
+                <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Status</span>
+                <span className="font-bold uppercase text-accent">{selectedBooking.status}</span>
               </div>
             </div>
 
-            <div className="p-3 bg-slate-50 rounded-xl border border-slate-200">
-              <span className="text-slate-500 block mb-1">Designated Meeting Location</span>
-              <p className="font-medium text-slate-800">{selectedBooking.meeting_address}</p>
+            <div className="p-3.5 bg-white rounded-2xl border border-charcoal-border">
+              <span className="text-charcoal-muted block text-[10px] uppercase font-bold mb-1">Designated Meeting Location</span>
+              <p className="font-medium text-charcoal">{selectedBooking.meeting_address}</p>
             </div>
 
             {selectedBooking.verification_otp && (
-              <div className="p-3 bg-primary-50 rounded-xl border border-primary-100 flex items-center justify-between">
+              <div className="p-3.5 bg-navy-50 rounded-2xl border border-charcoal-border flex items-center justify-between">
                 <div>
-                  <span className="font-bold text-primary-900 block">In-Person Verification PIN</span>
-                  <span className="text-primary-700 text-[11px]">Given to customer to activate session</span>
+                  <span className="font-bold text-navy-900 block">In-Person Verification PIN</span>
+                  <span className="text-charcoal-muted text-[11px]">Given to customer to activate session</span>
                 </div>
-                <span className="font-mono text-lg font-bold text-primary-700 tracking-widest bg-white px-3 py-1 rounded-lg border border-primary-200">
+                <span className="font-mono text-lg font-bold text-navy-900 tracking-widest bg-white px-3 py-1 rounded-xl border border-charcoal-border shadow-subtle">
                   {selectedBooking.verification_otp}
                 </span>
               </div>
             )}
 
             <div className="flex justify-end pt-2">
-              <Button size="sm" variant="secondary" onClick={() => setSelectedBooking(null)}>
+              <Button size="sm" variant="outline" onClick={() => setSelectedBooking(null)} className="font-bold border-charcoal-border">
                 Close
               </Button>
             </div>
@@ -358,30 +358,31 @@ export default function AdminBookingsPage() {
           title="Administrative Session Cancellation"
         >
           <div className="space-y-4">
-            <p className="text-xs text-slate-600">
+            <p className="text-xs text-charcoal-muted">
               You are executing an administrative override to cancel booking{' '}
-              <strong className="font-mono">#{cancelModalBooking.id.slice(0, 8)}</strong> between{' '}
-              <strong>{cancelModalBooking.customer_name}</strong> and{' '}
-              <strong>{cancelModalBooking.companion_name}</strong>. Both parties will be immediately notified.
+              <strong className="font-mono text-navy-900">#{cancelModalBooking.id.slice(0, 8)}</strong> between{' '}
+              <strong className="text-navy-900">{cancelModalBooking.customer_name}</strong> and{' '}
+              <strong className="text-navy-900">{cancelModalBooking.companion_name}</strong>. Both parties will be immediately notified.
             </p>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-navy-950 block">Reason for Cancellation</label>
+              <label className="text-xs font-bold text-navy-900 block">Reason for Cancellation</label>
               <textarea
                 rows={3}
                 value={cancelReason}
                 onChange={(e) => setCancelReason(e.target.value)}
                 placeholder="e.g. Safety concern reported / severe weather disruption / mutually agreed reschedule"
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                className="w-full text-xs p-2.5 rounded-xl border border-charcoal-border bg-white focus:outline-none focus:ring-2 focus:ring-navy-900"
               />
             </div>
 
-            <div className="flex items-center justify-end gap-2 pt-2 border-t border-slate-100">
+            <div className="flex items-center justify-end gap-2 pt-2 border-t border-charcoal-border">
               <Button
                 size="sm"
-                variant="secondary"
+                variant="outline"
                 onClick={() => setCancelModalBooking(null)}
                 disabled={isProcessing}
+                className="font-bold border-charcoal-border"
               >
                 Cancel
               </Button>
@@ -390,6 +391,7 @@ export default function AdminBookingsPage() {
                 variant="danger"
                 onClick={handleCancelBooking}
                 disabled={isProcessing}
+                className="font-bold shadow-subtle"
               >
                 Confirm Cancellation
               </Button>
@@ -400,4 +402,3 @@ export default function AdminBookingsPage() {
     </div>
   );
 }
-

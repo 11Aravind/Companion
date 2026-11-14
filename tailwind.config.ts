@@ -22,31 +22,50 @@ const config: Config = {
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        // Mobility Theme System Tokens
         navy: {
-          50: '#f0f4f8',
-          100: '#d9e2ec',
-          200: '#bcccdc',
-          300: '#9fb3c8',
-          400: '#829ab1',
-          500: '#627d98',
-          600: '#486581',
-          700: '#334e68',
-          800: '#1C2541',
-          900: '#0B132B',
-          950: '#050A19',
+          50: '#F7F8FA',
+          100: '#E8EBF0',
+          200: '#D5DAE3',
+          300: '#A9B4C7',
+          400: '#737B89',
+          500: '#4D586E',
+          600: '#2E3B56',
+          700: '#20242C',
+          800: '#1A2949',
+          900: '#14213D', // Deep Navy (Primary)
+          950: '#0E172B',
+        },
+        charcoal: {
+          DEFAULT: '#20242C', // Primary Text
+          muted: '#737B89',   // Secondary Text
+          border: '#E8EBF0',  // Borders
+          surface: '#F7F8FA', // Background
         },
         primary: {
-          DEFAULT: 'hsl(var(--primary))',
-          foreground: 'hsl(var(--primary-foreground))',
-          50: '#eff6ff',
-          100: '#dbeafe',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
+          DEFAULT: '#14213D', // Deep Navy
+          foreground: '#FFFFFF',
+          50: '#F7F8FA',
+          100: '#E8EBF0',
+          500: '#2583E8', // Map Accent
+          600: '#14213D',
+          700: '#0E172B',
         },
         secondary: {
-          DEFAULT: 'hsl(var(--secondary))',
-          foreground: 'hsl(var(--secondary-foreground))',
+          DEFAULT: '#FFFFFF', // White
+          foreground: '#20242C',
+        },
+        accent: {
+          DEFAULT: '#16A36A', // Fresh Green (Accent)
+          foreground: '#FFFFFF',
+          hover: '#138A59',
+          light: '#E8F6F0',
+          emerald: '#16A36A',
+          teal: '#0D9488',
+        },
+        map: {
+          accent: '#2583E8', // Map Accent
+          route: '#2583E8',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
@@ -55,12 +74,6 @@ const config: Config = {
         muted: {
           DEFAULT: 'hsl(var(--muted))',
           foreground: 'hsl(var(--muted-foreground))',
-        },
-        accent: {
-          DEFAULT: 'hsl(var(--accent))',
-          foreground: 'hsl(var(--accent-foreground))',
-          emerald: '#10B981',
-          teal: '#0D9488',
         },
         popover: {
           DEFAULT: 'hsl(var(--popover))',
@@ -75,6 +88,11 @@ const config: Config = {
         lg: 'var(--radius)',
         md: 'calc(var(--radius) - 2px)',
         sm: 'calc(var(--radius) - 4px)',
+      },
+      boxShadow: {
+        subtle: '0 1px 3px 0 rgba(20, 33, 61, 0.04), 0 1px 2px -1px rgba(20, 33, 61, 0.04)',
+        card: '0 2px 6px -1px rgba(20, 33, 61, 0.05), 0 1px 4px -1px rgba(20, 33, 61, 0.03)',
+        floating: '0 12px 28px -4px rgba(20, 33, 61, 0.12), 0 4px 8px -2px rgba(20, 33, 61, 0.04)',
       },
       keyframes: {
         'accordion-down': {
@@ -96,4 +114,3 @@ const config: Config = {
 };
 
 export default config;
-

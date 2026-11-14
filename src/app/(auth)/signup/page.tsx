@@ -47,30 +47,30 @@ function SignupForm() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col justify-center py-12 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#F7F8FA] flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-charcoal">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
         <Link href="/" className="inline-flex items-center gap-2 mb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-900 text-white shadow-md">
-            <HeartHandshake className="h-6 w-6 text-emerald-400" />
+          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-900 text-white shadow-subtle">
+            <HeartHandshake className="h-6 w-6 text-accent" />
           </div>
         </Link>
-        <h2 className="text-2xl font-black text-navy-950 tracking-tight">Create your account</h2>
-        <p className="mt-1.5 text-xs text-slate-500">
+        <h2 className="text-2xl font-black text-navy-900 tracking-tight">Create your account</h2>
+        <p className="mt-1 text-xs text-charcoal-muted">
           Join the community for verified companion care and accompaniment
         </p>
       </div>
 
       <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md px-4">
-        <Card className="rounded-2xl border border-slate-200/90 shadow-xl bg-white p-6 sm:p-8">
+        <Card className="rounded-3xl border border-charcoal-border shadow-card bg-white p-6 sm:p-8">
           {/* Role selector */}
-          <div className="flex rounded-xl bg-slate-100 p-1 mb-6 border border-slate-200">
+          <div className="flex rounded-2xl bg-navy-50 p-1 mb-6 border border-charcoal-border">
             <button
               type="button"
               onClick={() => setRole('customer')}
-              className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${
+              className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all ${
                 role === 'customer'
-                  ? 'bg-white text-navy-950 shadow-sm'
-                  : 'text-slate-500 hover:text-navy-900'
+                  ? 'bg-navy-900 text-white shadow-subtle'
+                  : 'text-charcoal-muted hover:text-navy-900'
               }`}
             >
               I need a Companion
@@ -78,13 +78,13 @@ function SignupForm() {
             <button
               type="button"
               onClick={() => setRole('companion')}
-              className={`flex-1 py-1.5 text-xs font-bold rounded-lg transition-all ${
+              className={`flex-1 py-2 text-xs font-bold rounded-xl transition-all ${
                 role === 'companion'
-                  ? 'bg-white text-navy-950 shadow-sm'
-                  : 'text-slate-500 hover:text-navy-900'
+                  ? 'bg-navy-900 text-white shadow-subtle'
+                  : 'text-charcoal-muted hover:text-navy-900'
               }`}
             >
-              I want to be a Companion
+              I want to be a Partner
             </button>
           </div>
 
@@ -97,7 +97,7 @@ function SignupForm() {
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1.5">Full Name</label>
+              <label className="text-xs font-bold text-navy-900 block mb-1.5">Full Name</label>
               <Input
                 name="fullName"
                 type="text"
@@ -110,7 +110,7 @@ function SignupForm() {
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1.5">Email Address</label>
+              <label className="text-xs font-bold text-navy-900 block mb-1.5">Email Address</label>
               <Input
                 name="email"
                 type="email"
@@ -123,7 +123,7 @@ function SignupForm() {
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1.5">Phone Number</label>
+              <label className="text-xs font-bold text-navy-900 block mb-1.5">Phone Number</label>
               <Input
                 name="phone"
                 type="tel"
@@ -136,7 +136,7 @@ function SignupForm() {
             </div>
 
             <div>
-              <label className="text-xs font-bold text-slate-700 block mb-1.5">Password</label>
+              <label className="text-xs font-bold text-navy-900 block mb-1.5">Password</label>
               <Input
                 name="password"
                 type="password"
@@ -151,7 +151,7 @@ function SignupForm() {
             {role === 'companion' && (
               <>
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">Base Operating City</label>
+                  <label className="text-xs font-bold text-navy-900 block mb-1.5">Base Operating City</label>
                   <Input
                     name="city"
                     type="text"
@@ -164,7 +164,7 @@ function SignupForm() {
                 </div>
 
                 <div>
-                  <label className="text-xs font-bold text-slate-700 block mb-1.5">Professional Headline</label>
+                  <label className="text-xs font-bold text-navy-900 block mb-1.5">Professional Headline</label>
                   <Input
                     name="headline"
                     type="text"
@@ -175,8 +175,8 @@ function SignupForm() {
                   />
                 </div>
 
-                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 flex items-start gap-2">
-                  <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
+                <div className="p-3 bg-accent-light border border-accent/20 rounded-xl text-xs text-accent flex items-start gap-2">
+                  <ShieldCheck className="h-4 w-4 text-accent shrink-0 mt-0.5" />
                   <span>
                     Companions undergo government ID verification before receiving live bookings.
                   </span>
@@ -187,16 +187,16 @@ function SignupForm() {
             <Button
               type="submit"
               isLoading={isLoading}
-              className="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold h-11 rounded-xl shadow-md mt-2"
+              className="w-full bg-navy-900 hover:bg-navy-800 text-white font-bold h-11 rounded-xl shadow-subtle mt-2"
             >
               Sign Up as {role === 'companion' ? 'Companion Partner' : 'Customer'}{' '}
               <ArrowRight className="ml-1.5 h-4 w-4" />
             </Button>
           </form>
 
-          <div className="mt-6 pt-5 border-t border-slate-100 text-center text-xs text-slate-500">
+          <div className="mt-6 pt-5 border-t border-charcoal-border text-center text-xs text-charcoal-muted">
             Already have an account?{' '}
-            <Link href={`/login?role=${role}`} className="font-bold text-primary-600 hover:underline">
+            <Link href={`/login?role=${role}`} className="font-bold text-navy-900 hover:underline">
               Sign In
             </Link>
           </div>
@@ -210,7 +210,7 @@ export default function SignupPage() {
   return (
     <React.Suspense
       fallback={
-        <div className="min-h-screen bg-slate-50 flex items-center justify-center">
+        <div className="min-h-screen bg-[#F7F8FA] flex items-center justify-center">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-navy-900" />
         </div>
       }

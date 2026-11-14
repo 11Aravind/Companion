@@ -128,35 +128,35 @@ export default function AdminReviewsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-charcoal">
       {/* Title & Tabs */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-navy-950">Safety Reports & Review Moderation</h2>
-          <p className="text-sm text-slate-500 mt-0.5">
-            Maintain strict platform trust, investigate incident logs, and monitor participant feedback.
+          <h2 className="text-2xl font-black text-navy-900 tracking-tight">Trust & Safety Triage</h2>
+          <p className="text-xs text-charcoal-muted mt-0.5">
+            Maintain strict platform safety, investigate incident reports, and monitor feedback
           </p>
         </div>
-        <div className="flex items-center gap-2 bg-slate-200 p-1 rounded-xl">
+        <div className="flex items-center gap-1.5 p-1 bg-white rounded-xl border border-charcoal-border shadow-subtle self-start md:self-auto">
           <button
             onClick={() => setActiveTab('reports')}
-            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
               activeTab === 'reports'
-                ? 'bg-white text-navy-950 shadow-sm'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-navy-900 text-white shadow-subtle'
+                : 'text-charcoal-muted hover:text-navy-900'
             }`}
           >
-            Safety Incidents ({reports.filter((r) => r.status === 'open').length} Open)
+            Incidents ({reports.filter((r) => r.status === 'open').length} Open)
           </button>
           <button
             onClick={() => setActiveTab('reviews')}
-            className={`px-4 py-1.5 rounded-lg text-xs font-bold transition-all ${
+            className={`px-3.5 py-1.5 rounded-lg text-xs font-bold transition-all ${
               activeTab === 'reviews'
-                ? 'bg-white text-navy-950 shadow-sm'
-                : 'text-slate-600 hover:text-slate-900'
+                ? 'bg-navy-900 text-white shadow-subtle'
+                : 'text-charcoal-muted hover:text-navy-900'
             }`}
           >
-            Member Reviews ({reviews.length})
+            Reviews ({reviews.length})
           </button>
         </div>
       </div>
@@ -164,15 +164,15 @@ export default function AdminReviewsPage() {
       {activeTab === 'reports' ? (
         <div className="space-y-4">
           {/* Status filters */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-1.5 p-1 bg-white rounded-xl border border-charcoal-border shadow-subtle self-start inline-flex">
             {(['all', 'open', 'investigating', 'resolved'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setStatusFilter(tab)}
-                className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all ${
+                className={`px-3 py-1.5 rounded-lg text-xs font-bold capitalize transition-all ${
                   statusFilter === tab
-                    ? 'bg-navy-900 text-white shadow-sm'
-                    : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                    ? 'bg-navy-900 text-white shadow-subtle'
+                    : 'text-charcoal-muted hover:text-navy-900'
                 }`}
               >
                 {tab}
@@ -180,11 +180,11 @@ export default function AdminReviewsPage() {
             ))}
           </div>
 
-          {/* Reports Table */}
-          <Card className="overflow-hidden border border-slate-200 shadow-sm">
+          {/* Reports Table (Stripe Style) */}
+          <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white overflow-hidden">
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-sm">
-                <thead className="bg-slate-50 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-500">
+              <table className="w-full text-left text-xs">
+                <thead className="bg-[#F7F8FA] border-b border-charcoal-border text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
                   <tr>
                     <th className="py-3 px-4">Incident</th>
                     <th className="py-3 px-4">Reporter</th>
@@ -194,45 +194,45 @@ export default function AdminReviewsPage() {
                     <th className="py-3 px-4 text-right">Actions</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-slate-100 bg-white">
+                <tbody className="divide-y divide-charcoal-border/70 bg-white">
                   {filteredReports.map((report) => (
-                    <tr key={report.id} className="hover:bg-slate-50/70 transition-colors">
+                    <tr key={report.id} className="hover:bg-navy-50/50 transition-colors">
                       <td className="py-3.5 px-4">
-                        <span className="font-semibold text-navy-950 block text-xs">{report.reason}</span>
-                        <span className="text-[11px] text-slate-500 line-clamp-1 max-w-xs">
+                        <span className="font-bold text-navy-900 block text-xs">{report.reason}</span>
+                        <span className="text-[11px] text-charcoal-muted line-clamp-1 max-w-xs">
                           {report.details}
                         </span>
                       </td>
 
                       <td className="py-3.5 px-4 text-xs">
-                        <span className="font-semibold text-slate-800 block">{report.reporter_name}</span>
-                        <span className="text-[10px] uppercase font-bold text-slate-400">
+                        <span className="font-bold text-navy-900 block">{report.reporter_name}</span>
+                        <span className="text-[10px] uppercase font-bold text-charcoal-muted">
                           {report.reporter_role}
                         </span>
                       </td>
 
                       <td className="py-3.5 px-4 text-xs">
-                        <span className="font-semibold text-slate-800 block">{report.reported_user_name}</span>
-                        <span className="text-[10px] uppercase font-bold text-slate-400">
+                        <span className="font-bold text-navy-900 block">{report.reported_user_name}</span>
+                        <span className="text-[10px] uppercase font-bold text-charcoal-muted">
                           {report.reported_user_role}
                         </span>
                       </td>
 
-                      <td className="py-3.5 px-4 text-xs text-slate-500">{report.created_at}</td>
+                      <td className="py-3.5 px-4 text-xs text-charcoal-muted">{report.created_at}</td>
 
                       <td className="py-3.5 px-4">
                         {report.status === 'open' && (
-                          <Badge variant="danger" className="text-[11px]">
+                          <Badge variant="danger" className="text-[10px] font-bold">
                             Open Alert
                           </Badge>
                         )}
                         {report.status === 'investigating' && (
-                          <Badge variant="warning" className="text-[11px]">
-                            Under Investigation
+                          <Badge variant="warning" className="text-[10px] font-bold">
+                            Under Review
                           </Badge>
                         )}
                         {report.status === 'resolved' && (
-                          <Badge variant="success" className="text-[11px]">
+                          <Badge variant="success" className="text-[10px] font-bold">
                             Resolved
                           </Badge>
                         )}
@@ -241,12 +241,12 @@ export default function AdminReviewsPage() {
                       <td className="py-3.5 px-4 text-right">
                         <Button
                           size="sm"
-                          variant="secondary"
+                          variant="outline"
                           onClick={() => {
                             setSelectedReport(report);
                             setResolutionInput(report.resolution_notes || '');
                           }}
-                          className="text-xs h-8 px-2.5"
+                          className="text-xs h-7 px-2.5 font-bold border-charcoal-border"
                         >
                           <Eye className="h-3.5 w-3.5 mr-1" /> Triage
                         </Button>
@@ -256,7 +256,7 @@ export default function AdminReviewsPage() {
 
                   {filteredReports.length === 0 && (
                     <tr>
-                      <td colSpan={6} className="py-8 text-center text-slate-500">
+                      <td colSpan={6} className="py-8 text-center text-charcoal-muted">
                         No reports found for &quot;{statusFilter}&quot;.
                       </td>
                     </tr>
@@ -268,10 +268,10 @@ export default function AdminReviewsPage() {
         </div>
       ) : (
         /* Member Reviews Table */
-        <Card className="overflow-hidden border border-slate-200 shadow-sm">
+        <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white overflow-hidden">
           <div className="overflow-x-auto">
-            <table className="w-full text-left text-sm">
-              <thead className="bg-slate-50 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-500">
+            <table className="w-full text-left text-xs">
+              <thead className="bg-[#F7F8FA] border-b border-charcoal-border text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
                 <tr>
                   <th className="py-3 px-4">Reviewer</th>
                   <th className="py-3 px-4">Companion</th>
@@ -280,25 +280,25 @@ export default function AdminReviewsPage() {
                   <th className="py-3 px-4">Date</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-slate-100 bg-white">
+              <tbody className="divide-y divide-charcoal-border/70 bg-white">
                 {reviews.map((rev) => (
-                  <tr key={rev.id} className="hover:bg-slate-50/70 transition-colors">
-                    <td className="py-3.5 px-4 text-xs font-semibold text-navy-950">
+                  <tr key={rev.id} className="hover:bg-navy-50/50 transition-colors">
+                    <td className="py-3.5 px-4 text-xs font-bold text-navy-900">
                       {rev.reviewer_name}
                     </td>
-                    <td className="py-3.5 px-4 text-xs font-medium text-slate-700">
+                    <td className="py-3.5 px-4 text-xs font-semibold text-charcoal">
                       {rev.reviewee_name}
                     </td>
                     <td className="py-3.5 px-4">
                       <div className="flex items-center gap-1">
-                        <Star className="h-3.5 w-3.5 fill-amber-400 text-amber-400" />
-                        <span className="font-bold text-xs text-slate-800">{rev.rating}.0</span>
+                        <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
+                        <span className="font-bold text-xs text-navy-900">{rev.rating}.0</span>
                       </div>
                     </td>
-                    <td className="py-3.5 px-4 text-xs text-slate-600 max-w-md">
+                    <td className="py-3.5 px-4 text-xs text-charcoal-muted max-w-md leading-relaxed">
                       &quot;{rev.comment}&quot;
                     </td>
-                    <td className="py-3.5 px-4 text-xs text-slate-400">{rev.created_at}</td>
+                    <td className="py-3.5 px-4 text-xs text-charcoal-muted">{rev.created_at}</td>
                   </tr>
                 ))}
               </tbody>
@@ -315,57 +315,59 @@ export default function AdminReviewsPage() {
           title={`Safety Incident Triage: ${selectedReport.id}`}
         >
           <div className="space-y-4 text-xs">
-            <div className="p-3 bg-red-50 rounded-xl border border-red-200">
-              <div className="flex items-center gap-1.5 text-red-900 font-bold mb-1">
-                <AlertTriangle className="h-4 w-4 text-red-600" />
+            <div className="p-3.5 bg-rose-50 rounded-2xl border border-rose-200">
+              <div className="flex items-center gap-1.5 text-rose-900 font-bold mb-1">
+                <AlertTriangle className="h-4 w-4 text-rose-600" />
                 {selectedReport.reason}
               </div>
-              <p className="text-red-800 leading-relaxed">{selectedReport.details}</p>
+              <p className="text-rose-800 leading-relaxed">{selectedReport.details}</p>
             </div>
 
-            <div className="grid grid-cols-2 gap-3 p-3 bg-slate-50 rounded-xl border border-slate-200">
+            <div className="grid grid-cols-2 gap-3 p-3.5 bg-navy-50 rounded-2xl border border-charcoal-border">
               <div>
-                <span className="text-slate-500 block">Reporter</span>
-                <span className="font-bold text-navy-950">{selectedReport.reporter_name}</span>
-                <span className="text-[10px] text-slate-400 uppercase font-semibold block">
+                <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Reporter</span>
+                <span className="font-bold text-navy-900">{selectedReport.reporter_name}</span>
+                <span className="text-[10px] text-charcoal-muted uppercase font-semibold block">
                   {selectedReport.reporter_role}
                 </span>
               </div>
               <div>
-                <span className="text-slate-500 block">Reported User</span>
-                <span className="font-bold text-navy-950">{selectedReport.reported_user_name}</span>
-                <span className="text-[10px] text-slate-400 uppercase font-semibold block">
+                <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Reported User</span>
+                <span className="font-bold text-navy-900">{selectedReport.reported_user_name}</span>
+                <span className="text-[10px] text-charcoal-muted uppercase font-semibold block">
                   {selectedReport.reported_user_role}
                 </span>
               </div>
             </div>
 
             <div className="space-y-1.5">
-              <label className="text-xs font-bold text-navy-950 block">Investigation & Resolution Notes</label>
+              <label className="text-xs font-bold text-navy-900 block">Investigation & Resolution Notes</label>
               <textarea
                 rows={3}
                 value={resolutionInput}
                 onChange={(e) => setResolutionInput(e.target.value)}
                 placeholder="Log internal investigation findings, phone outreach notes, or disciplinary action taken..."
-                className="w-full text-xs p-2.5 rounded-lg border border-slate-300 bg-white"
+                className="w-full text-xs p-2.5 rounded-xl border border-charcoal-border bg-white focus:outline-none focus:ring-2 focus:ring-navy-900"
               />
             </div>
 
-            <div className="flex items-center justify-between pt-2 border-t border-slate-100">
+            <div className="flex items-center justify-between pt-2 border-t border-charcoal-border">
               <Button
                 size="sm"
-                variant="secondary"
+                variant="outline"
                 onClick={() => setSelectedReport(null)}
                 disabled={isProcessing}
+                className="font-bold border-charcoal-border"
               >
                 Close
               </Button>
               <div className="flex items-center gap-2">
                 <Button
                   size="sm"
-                  variant="secondary"
+                  variant="outline"
                   disabled={isProcessing}
                   onClick={() => handleResolveReport('investigating')}
+                  className="font-bold border-charcoal-border"
                 >
                   Mark In Review
                 </Button>
@@ -374,7 +376,7 @@ export default function AdminReviewsPage() {
                   variant="default"
                   disabled={isProcessing}
                   onClick={() => handleResolveReport('resolved')}
-                  className="bg-emerald-600 hover:bg-emerald-700"
+                  className="bg-accent hover:bg-accent-hover text-white font-bold shadow-subtle"
                 >
                   Resolve Incident
                 </Button>
@@ -386,4 +388,3 @@ export default function AdminReviewsPage() {
     </div>
   );
 }
-

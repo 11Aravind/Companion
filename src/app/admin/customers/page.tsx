@@ -96,41 +96,41 @@ export default function AdminCustomersPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-charcoal">
       {/* Title & Stats */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-navy-950">Customer Directory</h2>
-          <p className="text-sm text-slate-500 mt-0.5">
-            Supervise registered platform customers, verify emergency profiles, and manage access privileges.
+          <h2 className="text-2xl font-black text-navy-900 tracking-tight">Customer Directory</h2>
+          <p className="text-xs text-charcoal-muted mt-0.5">
+            Supervise registered platform clients, verify emergency contacts, and regulate access
           </p>
         </div>
         <div className="flex items-center gap-2">
-          <Badge variant="success" className="px-3 py-1 font-semibold">
+          <Badge variant="success" className="px-3 py-1 font-bold">
             {customers.filter((c) => c.is_active).length} Active Accounts
           </Badge>
-          <Badge variant="default" className="px-3 py-1 font-semibold">
+          <Badge variant="secondary" className="px-3 py-1 font-bold">
             {customers.length} Total Registered
           </Badge>
         </div>
       </div>
 
       {/* Search Input */}
-      <div className="relative max-w-md">
-        <Search className="absolute left-3.5 top-3 h-4 w-4 text-slate-400" />
+      <div className="max-w-md">
         <Input
           placeholder="Search by customer name, email, or phone..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          className="pl-10"
+          icon={<Search className="h-4 w-4" />}
+          className="h-10 text-xs"
         />
       </div>
 
-      {/* Customer Directory Table */}
-      <Card className="overflow-hidden border border-slate-200 shadow-sm">
+      {/* Customer Directory Table (Stripe Style) */}
+      <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-500">
+          <table className="w-full text-left text-xs">
+            <thead className="bg-[#F7F8FA] border-b border-charcoal-border text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
               <tr>
                 <th className="py-3 px-4">Customer</th>
                 <th className="py-3 px-4">Phone</th>
@@ -141,17 +141,17 @@ export default function AdminCustomersPage() {
                 <th className="py-3 px-4 text-right">Actions</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 bg-white">
+            <tbody className="divide-y divide-charcoal-border/70 bg-white">
               {filtered.map((customer) => (
-                <tr key={customer.id} className="hover:bg-slate-50/70 transition-colors">
+                <tr key={customer.id} className="hover:bg-navy-50/50 transition-colors">
                   <td className="py-3.5 px-4">
                     <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-full bg-slate-100 text-slate-700 font-bold flex items-center justify-center text-sm border border-slate-200">
+                      <div className="h-9 w-9 rounded-xl bg-navy-50 text-navy-900 font-bold flex items-center justify-center text-xs border border-charcoal-border">
                         {customer.full_name.charAt(0)}
                       </div>
                       <div>
-                        <span className="font-semibold text-navy-950 block">{customer.full_name}</span>
-                        <div className="flex items-center gap-1 text-xs text-slate-500">
+                        <span className="font-bold text-navy-900 block">{customer.full_name}</span>
+                        <div className="flex items-center gap-1 text-[11px] text-charcoal-muted">
                           <Mail className="h-3 w-3" />
                           {customer.email}
                         </div>
@@ -160,38 +160,38 @@ export default function AdminCustomersPage() {
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <div className="flex items-center gap-1.5 text-xs text-slate-700 font-medium">
-                      <Phone className="h-3.5 w-3.5 text-slate-400" />
+                    <div className="flex items-center gap-1.5 text-xs text-charcoal font-medium">
+                      <Phone className="h-3.5 w-3.5 text-charcoal-muted" />
                       {customer.phone}
                     </div>
                   </td>
 
                   <td className="py-3.5 px-4">
                     <div className="text-xs">
-                      <span className="font-semibold text-slate-800 block">
+                      <span className="font-semibold text-charcoal block">
                         {customer.emergency_contact_name || 'Not provided'}
                       </span>
-                      <span className="text-slate-500">{customer.emergency_contact_phone || '—'}</span>
+                      <span className="text-[11px] text-charcoal-muted">{customer.emergency_contact_phone || '—'}</span>
                     </div>
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-800">
-                      <Calendar className="h-3.5 w-3.5 text-slate-400" />
+                    <div className="flex items-center gap-1.5 text-xs font-bold text-navy-900">
+                      <Calendar className="h-3.5 w-3.5 text-charcoal-muted" />
                       {customer.total_bookings} sessions
                     </div>
                   </td>
 
-                  <td className="py-3.5 px-4 font-bold text-navy-950 text-xs">
+                  <td className="py-3.5 px-4 font-bold text-navy-900 text-xs">
                     ₹{customer.total_spent.toLocaleString()}
                   </td>
 
                   <td className="py-3.5 px-4">
                     <span
-                      className={`inline-block px-2.5 py-0.5 rounded text-[11px] font-bold ${
+                      className={`inline-block px-2.5 py-0.5 rounded-full text-[10px] font-bold border ${
                         customer.is_active
-                          ? 'bg-emerald-50 text-emerald-700'
-                          : 'bg-red-50 text-red-700'
+                          ? 'bg-accent-light text-accent border-accent/20'
+                          : 'bg-rose-50 text-rose-700 border-rose-200'
                       }`}
                     >
                       {customer.is_active ? 'Active' : 'Suspended'}
@@ -201,10 +201,10 @@ export default function AdminCustomersPage() {
                   <td className="py-3.5 px-4 text-right">
                     <Button
                       size="sm"
-                      variant={customer.is_active ? 'danger' : 'secondary'}
+                      variant={customer.is_active ? 'danger' : 'outline'}
                       disabled={loadingId === customer.id}
                       onClick={() => handleToggleActive(customer)}
-                      className="text-xs h-8 px-2.5"
+                      className="text-xs h-7 px-2.5 font-bold"
                     >
                       {customer.is_active ? (
                         <>
@@ -222,7 +222,7 @@ export default function AdminCustomersPage() {
 
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={7} className="py-8 text-center text-slate-500">
+                  <td colSpan={7} className="py-8 text-center text-charcoal-muted">
                     No customers found matching &quot;{search}&quot;.
                   </td>
                 </tr>
@@ -234,4 +234,3 @@ export default function AdminCustomersPage() {
     </div>
   );
 }
-

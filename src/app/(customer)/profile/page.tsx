@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 import { CustomerHeader } from '@/components/shell/CustomerHeader';
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -59,33 +59,33 @@ export default function CustomerProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#F7F8FA] flex flex-col text-charcoal">
       <CustomerHeader />
 
-      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-8 max-w-4xl space-y-6">
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12 max-w-4xl space-y-6">
         <div>
-          <h1 className="text-2xl font-black text-navy-950 tracking-tight">Customer Profile & Safety</h1>
-          <p className="text-xs text-slate-500 mt-1">
-            Manage your personal details, emergency contacts, and saved meeting addresses
+          <h1 className="text-2xl font-black text-navy-900 tracking-tight">Customer Profile & Safety</h1>
+          <p className="text-xs text-charcoal-muted mt-0.5">
+            Manage your personal profile, safety emergency contacts, and saved meeting addresses
           </p>
         </div>
 
         {isSaved && (
-          <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+          <div className="p-4 rounded-2xl bg-accent-light border border-accent/30 text-accent text-xs font-bold flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-accent" />
             <span>Profile and emergency preferences updated successfully!</span>
           </div>
         )}
 
         <form onSubmit={handleSaveProfile} className="space-y-6">
           {/* Personal Information */}
-          <Card className="rounded-2xl border-slate-200/90 shadow-sm bg-white p-6">
-            <h3 className="text-base font-bold text-navy-950 mb-4 pb-2 border-b border-slate-100">
+          <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white p-6">
+            <h3 className="text-base font-bold text-navy-900 mb-4 pb-2 border-b border-charcoal-border">
               Personal Information
             </h3>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Full Name</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Full Name</label>
                 <Input
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
@@ -94,7 +94,7 @@ export default function CustomerProfilePage() {
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Phone Number</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Phone Number</label>
                 <Input
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
@@ -103,25 +103,25 @@ export default function CustomerProfilePage() {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Registered Email</label>
-                <Input value={email} disabled icon={<Mail className="h-4 w-4" />} className="bg-slate-50 text-slate-500" />
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Registered Email</label>
+                <Input value={email} disabled icon={<Mail className="h-4 w-4" />} className="bg-navy-50 text-charcoal-muted" />
               </div>
             </div>
           </Card>
 
           {/* Emergency Contact Information */}
-          <Card className="rounded-2xl border-slate-200/90 shadow-sm bg-white p-6 border-l-4 border-l-emerald-500">
+          <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white p-6 border-l-4 border-l-accent">
             <div className="flex items-center gap-2 mb-2">
-              <ShieldAlert className="h-5 w-5 text-emerald-600" />
-              <h3 className="text-base font-bold text-navy-950">Emergency Contact (Safety First)</h3>
+              <ShieldAlert className="h-5 w-5 text-accent" />
+              <h3 className="text-base font-bold text-navy-900">Emergency Contact (Safety First)</h3>
             </div>
-            <p className="text-xs text-slate-500 mb-4">
+            <p className="text-xs text-charcoal-muted mb-4">
               During any active companion booking, our safety center or your companion can notify this contact in case of an emergency.
             </p>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Contact Name</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Contact Name</label>
                 <Input
                   value={emergencyName}
                   onChange={(e) => setEmergencyName(e.target.value)}
@@ -129,7 +129,7 @@ export default function CustomerProfilePage() {
                 />
               </div>
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Emergency Phone</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Emergency Phone</label>
                 <Input
                   value={emergencyPhone}
                   onChange={(e) => setEmergencyPhone(e.target.value)}
@@ -137,7 +137,7 @@ export default function CustomerProfilePage() {
                 />
               </div>
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Relationship</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Relationship</label>
                 <Input
                   value={emergencyRel}
                   onChange={(e) => setEmergencyRel(e.target.value)}
@@ -148,9 +148,9 @@ export default function CustomerProfilePage() {
           </Card>
 
           {/* Saved Meeting Locations */}
-          <Card className="rounded-2xl border-slate-200/90 shadow-sm bg-white p-6">
-            <h3 className="text-base font-bold text-navy-950 mb-2">Saved Meeting Addresses</h3>
-            <p className="text-xs text-slate-500 mb-4">
+          <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white p-6">
+            <h3 className="text-base font-bold text-navy-900 mb-2">Saved Meeting Addresses</h3>
+            <p className="text-xs text-charcoal-muted mb-4">
               Quickly prefill frequent meeting spots when booking companions
             </p>
 
@@ -158,19 +158,19 @@ export default function CustomerProfilePage() {
               {savedPlaces.map((place) => (
                 <div
                   key={place.id}
-                  className="flex items-center justify-between p-3 rounded-xl bg-slate-50 border border-slate-200/80 text-xs"
+                  className="flex items-center justify-between p-3.5 rounded-2xl bg-[#F7F8FA] border border-charcoal-border text-xs"
                 >
                   <div className="flex items-start gap-2.5">
-                    <MapPin className="h-4 w-4 text-primary-600 shrink-0 mt-0.5" />
+                    <MapPin className="h-4 w-4 text-[#2583E8] shrink-0 mt-0.5" />
                     <div>
-                      <span className="font-bold text-navy-950 block">{place.label}</span>
-                      <span className="text-slate-500">{place.address}</span>
+                      <span className="font-bold text-navy-900 block">{place.label}</span>
+                      <span className="text-charcoal-muted">{place.address}</span>
                     </div>
                   </div>
                   <button
                     type="button"
                     onClick={() => handleDeletePlace(place.id)}
-                    className="p-1.5 text-slate-400 hover:text-rose-600 hover:bg-white rounded-lg transition-colors"
+                    className="p-1.5 text-charcoal-muted hover:text-rose-600 hover:bg-white rounded-lg transition-colors"
                   >
                     <Trash2 className="h-4 w-4" />
                   </button>
@@ -179,8 +179,8 @@ export default function CustomerProfilePage() {
             </div>
 
             {/* Add new place */}
-            <div className="p-4 rounded-xl bg-slate-50/60 border border-slate-200 border-dashed space-y-3">
-              <span className="text-xs font-bold text-navy-950 block">Add New Saved Location</span>
+            <div className="p-4 rounded-2xl bg-navy-50/50 border border-charcoal-border border-dashed space-y-3">
+              <span className="text-xs font-bold text-navy-900 block">Add New Saved Location</span>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-2">
                 <Input
                   placeholder="Label (e.g. Office, Gym)"
@@ -200,7 +200,7 @@ export default function CustomerProfilePage() {
                 onClick={handleAddPlace}
                 variant="outline"
                 size="sm"
-                className="text-xs font-semibold h-8 gap-1 bg-white"
+                className="text-xs font-bold h-8 gap-1 bg-white border-charcoal-border"
               >
                 <Plus className="h-3.5 w-3.5" /> Add Location
               </Button>
@@ -208,7 +208,7 @@ export default function CustomerProfilePage() {
           </Card>
 
           <div className="flex justify-end">
-            <Button type="submit" className="bg-navy-900 hover:bg-navy-800 text-white font-bold px-8 h-11 rounded-xl shadow-md gap-2">
+            <Button type="submit" className="bg-navy-900 hover:bg-navy-800 text-white font-bold px-8 h-11 rounded-xl shadow-subtle gap-2">
               <Save className="h-4 w-4" /> Save Profile Preferences
             </Button>
           </div>
@@ -217,4 +217,3 @@ export default function CustomerProfilePage() {
     </div>
   );
 }
-

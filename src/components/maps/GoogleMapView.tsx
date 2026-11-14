@@ -4,7 +4,7 @@ import * as React from 'react';
 import { loadGoogleMaps, DEFAULT_MAP_CENTER, MAP_STYLES_CLEAN } from '@/lib/maps/google-maps';
 import { animateMarkerTo } from '@/lib/maps/marker-animation';
 import { CompanionProfile } from '@/types/companion';
-import { Loader2, MapPin, Navigation, AlertCircle } from 'lucide-react';
+import { Loader2, AlertCircle } from 'lucide-react';
 
 export interface GoogleMapViewProps {
   center?: { lat: number; lng: number };
@@ -42,7 +42,7 @@ export function GoogleMapView({
   const [isLoading, setIsLoading] = React.useState(true);
   const [loadError, setLoadError] = React.useState<string | null>(null);
 
-  // 1. Initialize Map
+  // 1. Initialize Map with Clean Mobility Silver Style
   React.useEffect(() => {
     let isMounted = true;
 
@@ -77,7 +77,7 @@ export function GoogleMapView({
     };
   }, []); // Run once
 
-  // 2. Sync User Location Marker
+  // 2. Sync User Location Marker (Map Accent Blue #2583E8)
   React.useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map || !window.google) return;
@@ -94,13 +94,13 @@ export function GoogleMapView({
       userMarkerRef.current = new google.maps.Marker({
         position: pos,
         map,
-        title: 'Your Location',
+        title: 'Your Current Location',
         icon: {
           path: google.maps.SymbolPath.CIRCLE,
           scale: 8,
-          fillColor: '#2563eb',
+          fillColor: '#2583E8', // Map Accent
           fillOpacity: 1,
-          strokeColor: '#ffffff',
+          strokeColor: '#FFFFFF',
           strokeWeight: 3,
         },
       });
@@ -109,7 +109,7 @@ export function GoogleMapView({
     }
   }, [userLocation]);
 
-  // 3. Sync Meeting Location Marker
+  // 3. Sync Meeting Location Marker (Deep Navy #14213D)
   React.useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map || !window.google) return;
@@ -130,9 +130,9 @@ export function GoogleMapView({
         icon: {
           path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
           scale: 6,
-          fillColor: '#10b981',
+          fillColor: '#14213D', // Deep Navy Primary
           fillOpacity: 1,
-          strokeColor: '#ffffff',
+          strokeColor: '#FFFFFF',
           strokeWeight: 2,
         },
       });
@@ -141,7 +141,7 @@ export function GoogleMapView({
     }
   }, [meetingLocation]);
 
-  // 4. Sync Active Companion Moving Marker (Smoothly Animated Lerp)
+  // 4. Sync Active Companion Moving Marker (Fresh Green #16A36A)
   React.useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map || !window.google) return;
@@ -156,19 +156,18 @@ export function GoogleMapView({
       activeCompanionMarkerRef.current = new google.maps.Marker({
         position: new google.maps.LatLng(activeCompanionLocation.lat, activeCompanionLocation.lng),
         map,
-        title: 'Companion En Route',
+        title: 'Companion Live Location',
         icon: {
           path: google.maps.SymbolPath.FORWARD_CLOSED_ARROW,
           scale: 7,
-          fillColor: '#7c3aed', // Purple pulse
+          fillColor: '#16A36A', // Fresh Green Accent
           fillOpacity: 1,
-          strokeColor: '#ffffff',
+          strokeColor: '#FFFFFF',
           strokeWeight: 2.5,
           rotation: activeCompanionLocation.heading || 0,
         },
       });
     } else {
-      // Animate smoothly to new coordinate
       animateMarkerTo(
         activeCompanionMarkerRef.current,
         activeCompanionLocation.lat,
@@ -186,7 +185,6 @@ export function GoogleMapView({
     const currentMarkers = companionMarkersMapRef.current;
     const activeIds = new Set(companions.map((c) => c.id));
 
-    // Remove old
     currentMarkers.forEach((marker, id) => {
       if (!activeIds.has(id)) {
         marker.setMap(null);
@@ -194,7 +192,6 @@ export function GoogleMapView({
       }
     });
 
-    // Add / Update
     companions.forEach((comp) => {
       const lat = comp.currentLocation?.lat || center.lat + (Math.random() - 0.5) * 0.04;
       const lng = comp.currentLocation?.lng || center.lng + (Math.random() - 0.5) * 0.04;
@@ -206,10 +203,10 @@ export function GoogleMapView({
           title: comp.fullName,
           icon: {
             path: google.maps.SymbolPath.CIRCLE,
-            scale: 9,
-            fillColor: '#0f172a',
-            fillOpacity: 0.9,
-            strokeColor: '#10b981',
+            scale: 8,
+            fillColor: '#14213D', // Deep Navy
+            fillOpacity: 1,
+            strokeColor: '#16A36A', // Fresh Green rim
             strokeWeight: 2.5,
           },
         });
@@ -223,7 +220,7 @@ export function GoogleMapView({
     });
   }, [companions, center, onCompanionClick]);
 
-  // 6. Draw Directions Route if requested
+  // 6. Draw Directions Route (Map Accent Blue #2583E8)
   React.useEffect(() => {
     const map = mapInstanceRef.current;
     if (!map || !window.google || !showRoute) {
@@ -243,9 +240,9 @@ export function GoogleMapView({
         map,
         suppressMarkers: true,
         polylineOptions: {
-          strokeColor: '#2563eb',
+          strokeColor: '#2583E8', // Map Accent
           strokeWeight: 5,
-          strokeOpacity: 0.85,
+          strokeOpacity: 0.9,
         },
       });
     }
@@ -293,30 +290,27 @@ export function GoogleMapView({
   if (loadError) {
     return (
       <div
-        className={`flex flex-col items-center justify-center p-6 bg-slate-100 rounded-2xl border border-slate-300 text-center text-slate-700 ${className}`}
+        className={`flex flex-col items-center justify-center p-6 bg-white rounded-2xl border border-charcoal-border text-center text-charcoal shadow-subtle ${className}`}
         style={{ minHeight: 350, ...style }}
       >
-        <AlertCircle className="h-8 w-8 text-amber-600 mb-2" />
-        <h4 className="font-bold text-sm text-navy-950">Google Maps Platform Configuration</h4>
-        <p className="text-xs text-slate-500 max-w-sm mt-1">
-          Add <code className="font-mono text-slate-800">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> to your{' '}
-          <code className="font-mono text-slate-800">.env.local</code> to activate live tiles, Places search, and
-          Directions routing.
+        <AlertCircle className="h-8 w-8 text-[#2583E8] mb-2" />
+        <h4 className="font-bold text-sm text-navy-900">Google Maps Platform Configuration</h4>
+        <p className="text-xs text-charcoal-muted max-w-sm mt-1">
+          Add <code className="font-mono text-navy-900 bg-navy-50 px-1 py-0.5 rounded">NEXT_PUBLIC_GOOGLE_MAPS_API_KEY</code> to activate live tiles, Places search, and GPS tracking.
         </p>
       </div>
     );
   }
 
   return (
-    <div className={`relative w-full h-full rounded-2xl overflow-hidden ${className}`} style={style}>
+    <div className={`relative w-full h-full rounded-2xl overflow-hidden border border-charcoal-border ${className}`} style={style}>
       {isLoading && (
-        <div className="absolute inset-0 bg-slate-100 flex flex-col items-center justify-center z-10 text-slate-500">
-          <Loader2 className="h-6 w-6 animate-spin text-primary-600 mb-2" />
-          <span className="text-xs font-semibold">Initializing Google Maps...</span>
+        <div className="absolute inset-0 bg-white/90 backdrop-blur-xs flex flex-col items-center justify-center z-10 text-charcoal-muted">
+          <Loader2 className="h-6 w-6 animate-spin text-navy-900 mb-2" />
+          <span className="text-xs font-semibold text-navy-900">Loading interactive map...</span>
         </div>
       )}
       <div ref={mapContainerRef} className="w-full h-full min-h-[350px]" />
     </div>
   );
 }
-

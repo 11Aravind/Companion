@@ -90,13 +90,13 @@ export const BOOKING_STATUSES = {
 export type BookingStatus = (typeof BOOKING_STATUSES)[keyof typeof BOOKING_STATUSES];
 
 export const STATUS_LABELS: Record<BookingStatus, { label: string; color: string; bg: string }> = {
-  pending: { label: 'Pending Review', color: 'text-amber-800', bg: 'bg-amber-100' },
-  accepted: { label: 'Accepted by Companion', color: 'text-blue-800', bg: 'bg-blue-100' },
-  rejected: { label: 'Declined', color: 'text-rose-800', bg: 'bg-rose-100' },
-  confirmed: { label: 'Confirmed & Scheduled', color: 'text-indigo-800', bg: 'bg-indigo-100' },
-  companion_arriving: { label: 'Companion En Route', color: 'text-purple-800', bg: 'bg-purple-100' },
-  active: { label: 'Companion In Session', color: 'text-emerald-800', bg: 'bg-emerald-100' },
-  completed: { label: 'Completed', color: 'text-slate-800', bg: 'bg-slate-100' },
-  cancelled: { label: 'Cancelled', color: 'text-red-800', bg: 'bg-red-100' },
+  pending: { label: 'Pending Review', color: 'text-amber-800', bg: 'bg-amber-50 border border-amber-200' },
+  accepted: { label: 'Accepted by Companion', color: 'text-[#2583E8]', bg: 'bg-[#2583E8]/10 border border-[#2583E8]/20' },
+  rejected: { label: 'Declined', color: 'text-rose-700', bg: 'bg-rose-50 border border-rose-200' },
+  confirmed: { label: 'Confirmed & Scheduled', color: 'text-navy-900', bg: 'bg-navy-100 border border-navy-200' },
+  companion_arriving: { label: 'Companion En Route', color: 'text-[#2583E8]', bg: 'bg-[#2583E8]/10 border border-[#2583E8]/30' },
+  active: { label: 'Companion In Session', color: 'text-[#16A36A]', bg: 'bg-[#16A36A]/10 border border-[#16A36A]/30' },
+  completed: { label: 'Completed', color: 'text-charcoal-muted', bg: 'bg-slate-100 border border-slate-200' },
+  cancelled: { label: 'Cancelled', color: 'text-rose-700', bg: 'bg-rose-50 border border-rose-200' },
 };
 

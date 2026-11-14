@@ -50,34 +50,34 @@ export default function CompanionAvailabilityPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#F7F8FA] flex flex-col text-charcoal">
       <CompanionHeader isOnline={true} />
 
-      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-8 max-w-4xl space-y-6">
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12 max-w-4xl space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-black text-navy-950 tracking-tight">Weekly Availability Schedule</h1>
-            <p className="text-xs text-slate-500 mt-1">
+            <h1 className="text-2xl font-black text-navy-900 tracking-tight">Weekly Availability</h1>
+            <p className="text-xs text-charcoal-muted mt-0.5">
               Customers can only book appointments during your enabled working hours
             </p>
           </div>
           <Button
             onClick={handleSave}
-            className="bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 h-10 rounded-xl shadow-md gap-2"
+            className="bg-navy-900 hover:bg-navy-800 text-white font-bold px-6 h-10 rounded-xl shadow-subtle gap-2"
           >
             <Save className="h-4 w-4" /> Save Schedule
           </Button>
         </div>
 
         {isSaved && (
-          <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+          <div className="p-4 rounded-2xl bg-accent-light border border-accent/30 text-accent text-xs font-bold flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-accent" />
             <span>Weekly calendar availability saved successfully!</span>
           </div>
         )}
 
-        <Card className="rounded-2xl border-slate-200/90 shadow-sm bg-white p-6">
-          <div className="divide-y divide-slate-100">
+        <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white p-6">
+          <div className="divide-y divide-charcoal-border">
             {schedule.map((day) => (
               <div
                 key={day.dayOfWeek}
@@ -88,39 +88,39 @@ export default function CompanionAvailabilityPage() {
                     type="button"
                     onClick={() => toggleDay(day.dayOfWeek)}
                     className={`h-6 w-11 rounded-full transition-colors relative p-0.5 ${
-                      day.isActive ? 'bg-emerald-600' : 'bg-slate-200'
+                      day.isActive ? 'bg-accent' : 'bg-charcoal-border'
                     }`}
                   >
                     <span
-                      className={`h-5 w-5 rounded-full bg-white block transition-transform shadow-sm ${
+                      className={`h-5 w-5 rounded-full bg-white block transition-transform shadow-subtle ${
                         day.isActive ? 'translate-x-5' : 'translate-x-0'
                       }`}
                     />
                   </button>
-                  <span className={`text-sm font-bold ${day.isActive ? 'text-navy-950' : 'text-slate-400'}`}>
+                  <span className={`text-sm font-bold ${day.isActive ? 'text-navy-900' : 'text-charcoal-muted'}`}>
                     {day.dayName}
                   </span>
                 </div>
 
                 {day.isActive ? (
                   <div className="flex items-center gap-2 text-xs">
-                    <span className="text-slate-500">From</span>
+                    <span className="text-charcoal-muted font-medium">From</span>
                     <input
                       type="time"
                       value={day.startTime}
                       onChange={(e) => updateHours(day.dayOfWeek, 'startTime', e.target.value)}
-                      className="h-9 rounded-lg border border-slate-300 bg-white px-2.5 text-xs font-semibold"
+                      className="h-9 rounded-xl border border-charcoal-border bg-white px-2.5 text-xs font-bold text-navy-900 focus:outline-none focus:ring-2 focus:ring-navy-900"
                     />
-                    <span className="text-slate-500">To</span>
+                    <span className="text-charcoal-muted font-medium">To</span>
                     <input
                       type="time"
                       value={day.endTime}
                       onChange={(e) => updateHours(day.dayOfWeek, 'endTime', e.target.value)}
-                      className="h-9 rounded-lg border border-slate-300 bg-white px-2.5 text-xs font-semibold"
+                      className="h-9 rounded-xl border border-charcoal-border bg-white px-2.5 text-xs font-bold text-navy-900 focus:outline-none focus:ring-2 focus:ring-navy-900"
                     />
                   </div>
                 ) : (
-                  <span className="text-xs text-slate-400 italic">Day off / Unavailable for bookings</span>
+                  <span className="text-xs text-charcoal-muted italic">Day off / Unavailable for bookings</span>
                 )}
               </div>
             ))}
@@ -130,4 +130,3 @@ export default function CompanionAvailabilityPage() {
     </div>
   );
 }
-

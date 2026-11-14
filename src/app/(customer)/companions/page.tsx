@@ -3,10 +3,11 @@
 import * as React from 'react';
 import { CustomerHeader } from '@/components/shell/CustomerHeader';
 import { CompanionCard } from '@/components/companions/CompanionCard';
+import { GoogleMapView } from '@/components/maps/GoogleMapView';
 import { ACTIVITY_CATEGORIES } from '@/lib/constants';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
-import { Search, Filter, Star, ShieldCheck, MapPin } from 'lucide-react';
+import { Search, Filter, Star, ShieldCheck, MapPin, Map as MapIcon, Grid } from 'lucide-react';
 import { CompanionProfile } from '@/types/companion';
 
 const ALL_COMPANIONS: CompanionProfile[] = [
@@ -27,6 +28,7 @@ const ALL_COMPANIONS: CompanionProfile[] = [
     ratingAverage: 4.9,
     ratingCount: 38,
     completedBookings: 52,
+    currentLocation: { lat: 13.0585, lng: 80.2498, address: 'Near Thousand Lights', updatedAt: '2026-11-14T10:00:00Z' },
   },
   {
     id: 'comp-2',
@@ -45,6 +47,7 @@ const ALL_COMPANIONS: CompanionProfile[] = [
     ratingAverage: 4.9,
     ratingCount: 27,
     completedBookings: 39,
+    currentLocation: { lat: 13.0418, lng: 80.2341, address: 'T Nagar', updatedAt: '2026-11-14T10:00:00Z' },
   },
   {
     id: 'comp-3',
@@ -63,6 +66,7 @@ const ALL_COMPANIONS: CompanionProfile[] = [
     ratingAverage: 4.8,
     ratingCount: 31,
     completedBookings: 44,
+    currentLocation: { lat: 13.0336, lng: 80.2678, address: 'Mylapore', updatedAt: '2026-11-14T10:00:00Z' },
   },
   {
     id: 'comp-4',
@@ -81,14 +85,16 @@ const ALL_COMPANIONS: CompanionProfile[] = [
     ratingAverage: 5.0,
     ratingCount: 19,
     completedBookings: 28,
+    currentLocation: { lat: 13.0620, lng: 80.2610, address: 'Nungambakkam', updatedAt: '2026-11-14T10:00:00Z' },
   },
 ];
 
 export default function CompanionsDirectoryPage() {
   const [selectedCategory, setSelectedCategory] = React.useState('all');
-  const [selectedCity, setSelectedCity] = React.useState('all');
   const [search, setSearch] = React.useState('');
   const [onlyOnline, setOnlyOnline] = React.useState(false);
+  const [viewMode, setViewMode] = React.useState<'grid' | 'split'>('grid');
+  const [selectedCompanion, setSelectedCompanion] = React.useState<CompanionProfile | null>(null);
 
   const filtered = ALL_COMPANIONS.filter((c) => {
     if (selectedCategory !== 'all' && !c.categories.includes(selectedCategory)) return false;
@@ -104,23 +110,51 @@ export default function CompanionsDirectoryPage() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#F7F8FA] flex flex-col text-charcoal">
       <CustomerHeader />
 
-      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-8 max-w-7xl">
-        <div className="mb-6">
-          <h1 className="text-2xl font-black text-navy-950 tracking-tight">Browse Verified Companions</h1>
-          <p className="text-xs text-slate-500 mt-1">
-            Filter by activity specialization, availability, and client ratings
-          </p>
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-6 pb-24 md:pb-12 max-w-7xl">
+        <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-6">
+          <div>
+            <h1 className="text-2xl font-black text-navy-900 tracking-tight">Browse Verified Companions</h1>
+            <p className="text-xs text-charcoal-muted mt-0.5">
+              Filter by activity specialization, hourly rates, and live availability
+            </p>
+          </div>
+
+          {/* Airbnb-style View Mode Switcher */}
+          <div className="flex items-center gap-1.5 p-1 bg-white rounded-xl border border-charcoal-border self-start sm:self-auto shadow-subtle">
+            <button
+              onClick={() => setViewMode('grid')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                viewMode === 'grid'
+                  ? 'bg-navy-900 text-white shadow-subtle'
+                  : 'text-charcoal-muted hover:text-navy-900'
+              }`}
+            >
+              <Grid className="h-3.5 w-3.5" />
+              <span>Grid</span>
+            </button>
+            <button
+              onClick={() => setViewMode('split')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                viewMode === 'split'
+                  ? 'bg-navy-900 text-white shadow-subtle'
+                  : 'text-charcoal-muted hover:text-navy-900'
+              }`}
+            >
+              <MapIcon className="h-3.5 w-3.5" />
+              <span>Map View</span>
+            </button>
+          </div>
         </div>
 
-        {/* Filters Header */}
-        <div className="bg-white p-4 rounded-2xl border border-slate-200/90 shadow-sm mb-6 space-y-3">
+        {/* Filters Header Bar */}
+        <div className="bg-white p-4 rounded-2xl border border-charcoal-border shadow-subtle mb-6 space-y-3.5">
           <div className="flex flex-col sm:flex-row gap-3">
             <div className="flex-1">
               <Input
-                placeholder="Search companions by name, skill, or language..."
+                placeholder="Search companions by name, specialization, or language..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 icon={<Search className="h-4 w-4" />}
@@ -129,25 +163,25 @@ export default function CompanionsDirectoryPage() {
             </div>
             <button
               onClick={() => setOnlyOnline(!onlyOnline)}
-              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-semibold border transition-all ${
+              className={`flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold border transition-all shrink-0 ${
                 onlyOnline
-                  ? 'bg-emerald-50 text-emerald-800 border-emerald-300 ring-2 ring-emerald-400/20'
-                  : 'bg-slate-50 text-slate-700 border-slate-200'
+                  ? 'bg-accent-light text-accent border-accent/30 ring-2 ring-accent/20'
+                  : 'bg-white text-charcoal border-charcoal-border hover:bg-navy-50'
               }`}
             >
-              <span className={`h-2.5 w-2.5 rounded-full ${onlyOnline ? 'bg-emerald-500' : 'bg-slate-400'}`} />
+              <span className={`h-2.5 w-2.5 rounded-full ${onlyOnline ? 'bg-accent' : 'bg-charcoal-muted'}`} />
               <span>Available Now</span>
             </button>
           </div>
 
           {/* Activity Category Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
+          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
             <button
               onClick={() => setSelectedCategory('all')}
-              className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+              className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border ${
                 selectedCategory === 'all'
-                  ? 'bg-navy-900 text-white'
-                  : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                  ? 'bg-navy-900 text-white border-navy-900 shadow-subtle'
+                  : 'bg-navy-50 text-charcoal border-charcoal-border hover:bg-white'
               }`}
             >
               All Categories
@@ -156,10 +190,10 @@ export default function CompanionsDirectoryPage() {
               <button
                 key={cat.id}
                 onClick={() => setSelectedCategory(cat.slug)}
-                className={`px-3 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 ${
+                className={`px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all shrink-0 border ${
                   selectedCategory === cat.slug
-                    ? 'bg-navy-900 text-white'
-                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                    ? 'bg-navy-900 text-white border-navy-900 shadow-subtle'
+                    : 'bg-navy-50 text-charcoal border-charcoal-border hover:bg-white'
                 }`}
               >
                 {cat.name}
@@ -168,18 +202,41 @@ export default function CompanionsDirectoryPage() {
           </div>
         </div>
 
-        {/* Results Count & Grid */}
-        <div className="mb-4 text-xs font-semibold text-slate-500">
+        {/* Results Info */}
+        <div className="mb-4 text-xs font-bold text-charcoal-muted">
           Showing {filtered.length} verified companion{filtered.length === 1 ? '' : 's'}
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {filtered.map((comp) => (
-            <CompanionCard key={comp.id} companion={comp} />
-          ))}
-        </div>
+        {/* Split Map View or Full Grid View */}
+        {viewMode === 'split' ? (
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+            {/* Left list */}
+            <div className="lg:col-span-6 space-y-4 max-h-[700px] overflow-y-auto pr-1">
+              {filtered.map((comp) => (
+                <CompanionCard key={comp.id} companion={comp} />
+              ))}
+            </div>
+
+            {/* Right sticky map */}
+            <div className="lg:col-span-6 sticky top-24 h-[650px] rounded-3xl overflow-hidden border border-charcoal-border shadow-card bg-white">
+              <GoogleMapView
+                center={{ lat: 13.0569, lng: 80.2522 }}
+                zoom={13}
+                userLocation={{ lat: 13.0569, lng: 80.2522 }}
+                companions={filtered}
+                onCompanionClick={(c) => setSelectedCompanion(c)}
+                className="h-full w-full"
+              />
+            </div>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {filtered.map((comp) => (
+              <CompanionCard key={comp.id} companion={comp} />
+            ))}
+          </div>
+        )}
       </main>
     </div>
   );
 }
-

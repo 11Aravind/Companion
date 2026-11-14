@@ -44,49 +44,49 @@ export default function CompanionProfilePage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#F7F8FA] flex flex-col text-charcoal">
       <CompanionHeader isOnline={true} />
 
-      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-8 max-w-4xl space-y-6">
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12 max-w-4xl space-y-6">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div>
-            <h1 className="text-2xl font-black text-navy-950 tracking-tight">Companion Profile Settings</h1>
-            <p className="text-xs text-slate-500 mt-1">
+            <h1 className="text-2xl font-black text-navy-900 tracking-tight">Partner Profile Settings</h1>
+            <p className="text-xs text-charcoal-muted mt-0.5">
               Configure your public bio, specializations, hourly rates, and coverage radius
             </p>
           </div>
-          <Badge variant="success" className="gap-1 py-1 px-3 self-start sm:self-auto">
+          <Badge variant="success" className="gap-1 py-1 px-3 self-start sm:self-auto font-bold">
             <ShieldCheck className="h-4 w-4" /> ID Verified Partner
           </Badge>
         </div>
 
         {isSaved && (
-          <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center gap-2">
-            <CheckCircle2 className="h-4 w-4 text-emerald-600" />
+          <div className="p-4 rounded-2xl bg-accent-light border border-accent/30 text-accent text-xs font-bold flex items-center gap-2">
+            <CheckCircle2 className="h-4 w-4 text-accent" />
             <span>Companion profile updated successfully!</span>
           </div>
         )}
 
         <form onSubmit={handleSave} className="space-y-6">
           {/* Basic Presentation */}
-          <Card className="rounded-2xl border-slate-200/90 shadow-sm bg-white p-6 space-y-4">
-            <h3 className="text-base font-bold text-navy-950 pb-2 border-b border-slate-100">
+          <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white p-6 space-y-4">
+            <h3 className="text-base font-bold text-navy-900 pb-2 border-b border-charcoal-border">
               Public Profile Presentation
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Full Legal Name</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Full Legal Name</label>
                 <Input value={fullName} onChange={(e) => setFullName(e.target.value)} icon={<User className="h-4 w-4" />} />
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Base Operating City</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Base Operating City</label>
                 <Input value={city} onChange={(e) => setCity(e.target.value)} icon={<MapPin className="h-4 w-4" />} />
               </div>
 
               <div className="sm:col-span-2">
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Professional Headline</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Professional Headline</label>
                 <Input
                   value={headline}
                   onChange={(e) => setHeadline(e.target.value)}
@@ -95,18 +95,18 @@ export default function CompanionProfilePage() {
               </div>
 
               <div className="sm:col-span-2">
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">About You / Introduction</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">About You / Introduction</label>
                 <textarea
                   value={bio}
                   onChange={(e) => setBio(e.target.value)}
                   rows={4}
-                  className="w-full rounded-xl border border-slate-300 p-3 text-xs leading-relaxed focus:outline-none focus:ring-2 focus:ring-primary-600"
+                  className="w-full rounded-xl border border-charcoal-border p-3 text-xs leading-relaxed focus:outline-none focus:ring-2 focus:ring-navy-900 bg-white text-charcoal"
                   placeholder="Introduce yourself, your background, empathy, and how you assist clients..."
                 />
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Languages Spoken (comma separated)</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Languages Spoken (comma separated)</label>
                 <Input
                   value={languages}
                   onChange={(e) => setLanguages(e.target.value)}
@@ -117,38 +117,38 @@ export default function CompanionProfilePage() {
           </Card>
 
           {/* Pricing & Service Radius */}
-          <Card className="rounded-2xl border-slate-200/90 shadow-sm bg-white p-6 space-y-4">
-            <h3 className="text-base font-bold text-navy-950 pb-2 border-b border-slate-100">
+          <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white p-6 space-y-4">
+            <h3 className="text-base font-bold text-navy-900 pb-2 border-b border-charcoal-border">
               Pricing & Service Coverage
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Hourly Rate (₹ / hour)</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Hourly Rate (₹ / hour)</label>
                 <Input
                   type="number"
                   min={100}
                   max={5000}
                   value={hourlyRate}
                   onChange={(e) => setHourlyRate(Number(e.target.value))}
-                  icon={<DollarSign className="h-4 w-4 text-emerald-600" />}
+                  icon={<DollarSign className="h-4 w-4 text-accent" />}
                 />
-                <span className="text-[11px] text-slate-400 mt-1 block">
+                <span className="text-[11px] text-charcoal-muted mt-1 block">
                   You earn 90% of this fare. 10% platform safety commission applies.
                 </span>
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-700 block mb-1.5">Max Service Radius (km)</label>
+                <label className="text-xs font-bold text-charcoal block mb-1.5">Max Service Radius (km)</label>
                 <Input
                   type="number"
                   min={5}
                   max={100}
                   value={serviceRadiusKm}
                   onChange={(e) => setServiceRadiusKm(Number(e.target.value))}
-                  icon={<MapPin className="h-4 w-4 text-primary-600" />}
+                  icon={<MapPin className="h-4 w-4 text-[#2583E8]" />}
                 />
-                <span className="text-[11px] text-slate-400 mt-1 block">
+                <span className="text-[11px] text-charcoal-muted mt-1 block">
                   Only customers booking meeting spots within {serviceRadiusKm} km will see you.
                 </span>
               </div>
@@ -156,11 +156,11 @@ export default function CompanionProfilePage() {
           </Card>
 
           {/* Activity Category Specializations */}
-          <Card className="rounded-2xl border-slate-200/90 shadow-sm bg-white p-6 space-y-3">
-            <h3 className="text-base font-bold text-navy-950 pb-2 border-b border-slate-100">
+          <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white p-6 space-y-3">
+            <h3 className="text-base font-bold text-navy-900 pb-2 border-b border-charcoal-border">
               Activity Categories You Offer
             </h3>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-charcoal-muted">
               Select which accompaniment activities you feel confident and experienced in providing:
             </p>
 
@@ -172,22 +172,22 @@ export default function CompanionProfilePage() {
                     key={cat.id}
                     type="button"
                     onClick={() => toggleCategory(cat.slug)}
-                    className={`flex items-start gap-3 p-3 rounded-xl border text-left transition-all ${
+                    className={`flex items-start gap-3 p-3.5 rounded-2xl border text-left transition-all ${
                       active
-                        ? 'bg-primary-50/70 border-primary-500 ring-2 ring-primary-500/20 text-navy-950'
-                        : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
+                        ? 'bg-navy-900 border-navy-900 text-white shadow-subtle'
+                        : 'bg-navy-50/50 border-charcoal-border text-charcoal hover:bg-white'
                     }`}
                   >
                     <div
                       className={`h-4 w-4 rounded mt-0.5 flex items-center justify-center text-xs shrink-0 ${
-                        active ? 'bg-primary-600 text-white font-bold' : 'border border-slate-300 bg-white'
+                        active ? 'bg-accent text-white font-bold' : 'border border-charcoal-border bg-white'
                       }`}
                     >
                       {active && '✓'}
                     </div>
                     <div>
                       <span className="text-xs font-bold block">{cat.name}</span>
-                      <span className="text-[11px] text-slate-500 line-clamp-1">{cat.description}</span>
+                      <span className={`text-[11px] line-clamp-1 ${active ? 'text-white/70' : 'text-charcoal-muted'}`}>{cat.description}</span>
                     </div>
                   </button>
                 );
@@ -198,7 +198,7 @@ export default function CompanionProfilePage() {
           <div className="flex justify-end">
             <Button
               type="submit"
-              className="bg-navy-900 hover:bg-navy-800 text-white font-bold px-8 h-11 rounded-xl shadow-md gap-2"
+              className="bg-navy-900 hover:bg-navy-800 text-white font-bold px-8 h-11 rounded-xl shadow-subtle gap-2"
             >
               <Save className="h-4 w-4" /> Save Companion Profile
             </Button>
@@ -208,4 +208,3 @@ export default function CompanionProfilePage() {
     </div>
   );
 }
-

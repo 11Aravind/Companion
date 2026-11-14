@@ -36,8 +36,8 @@ export function BookingCard({
 }) {
   const statusMeta = STATUS_LABELS[booking.status] || {
     label: booking.status,
-    color: 'text-slate-700',
-    bg: 'bg-slate-100',
+    color: 'text-charcoal',
+    bg: 'bg-navy-50 border border-charcoal-border',
   };
 
   const isCustomer = userRole === 'customer';
@@ -45,23 +45,23 @@ export function BookingCard({
   const counterpartAvatar = isCustomer ? booking.companionAvatar : booking.customerAvatar;
 
   return (
-    <Card className="rounded-2xl border border-slate-200/90 shadow-sm hover:shadow-md transition-all bg-white overflow-hidden">
+    <Card className="rounded-2xl border border-charcoal-border shadow-subtle hover:shadow-card transition-all duration-200 bg-white overflow-hidden">
       <CardContent className="p-5">
         {/* Status & Category Header */}
-        <div className="flex items-center justify-between gap-2 mb-3 pb-3 border-b border-slate-100">
-          <span className="text-xs font-bold text-navy-900 bg-navy-50 px-2.5 py-1 rounded-lg">
+        <div className="flex items-center justify-between gap-2 mb-3.5 pb-3 border-b border-charcoal-border">
+          <span className="text-xs font-bold text-navy-900 bg-navy-50 px-2.5 py-1 rounded-lg border border-charcoal-border">
             {booking.categoryName}
           </span>
           <span
-            className={`text-xs font-semibold px-2.5 py-1 rounded-full ${statusMeta.bg} ${statusMeta.color}`}
+            className={`text-xs font-bold px-3 py-1 rounded-full ${statusMeta.bg} ${statusMeta.color}`}
           >
             {statusMeta.label}
           </span>
         </div>
 
         {/* Counterpart Profile Strip */}
-        <div className="flex items-center gap-3 mb-4">
-          <div className="h-11 w-11 rounded-xl bg-slate-100 border border-slate-200 overflow-hidden flex items-center justify-center font-bold text-navy-900 text-sm shrink-0">
+        <div className="flex items-center gap-3.5 mb-4">
+          <div className="h-11 w-11 rounded-xl bg-navy-50 border border-charcoal-border overflow-hidden flex items-center justify-center font-bold text-navy-900 text-sm shrink-0">
             {counterpartAvatar ? (
               <img src={counterpartAvatar} alt={counterpartName} className="h-full w-full object-cover" />
             ) : (
@@ -69,44 +69,44 @@ export function BookingCard({
             )}
           </div>
           <div className="flex-1 min-w-0">
-            <span className="text-[11px] text-slate-400 uppercase font-medium block">
+            <span className="text-[10px] text-charcoal-muted uppercase font-bold tracking-wider block">
               {isCustomer ? 'Companion Partner' : 'Customer'}
             </span>
-            <h4 className="font-bold text-navy-950 text-sm truncate">{counterpartName}</h4>
+            <h4 className="font-bold text-navy-900 text-sm truncate">{counterpartName}</h4>
           </div>
 
           <div className="text-right">
-            <span className="text-[11px] text-slate-400 uppercase font-medium block">Total Fare</span>
-            <span className="text-sm font-bold text-navy-950">
+            <span className="text-[10px] text-charcoal-muted uppercase font-bold tracking-wider block">Total Fare</span>
+            <span className="text-sm font-bold text-navy-900">
               {formatCurrency(booking.pricing.totalAmount, booking.pricing.currency)}
             </span>
           </div>
         </div>
 
         {/* Schedule & Location Grid */}
-        <div className="space-y-2 text-xs text-slate-600 bg-slate-50/80 p-3 rounded-xl mb-4 border border-slate-100">
+        <div className="space-y-2 text-xs text-charcoal bg-navy-50 p-3.5 rounded-xl mb-4 border border-charcoal-border">
           <div className="flex items-center gap-2">
-            <Calendar className="h-3.5 w-3.5 text-primary-600 shrink-0" />
-            <span className="font-medium text-slate-800">{formatDate(booking.scheduledDate)}</span>
-            <span>at</span>
-            <span className="font-medium text-slate-800">{booking.scheduledStartTime}</span>
-            <span className="text-slate-400">({booking.durationHours} hrs duration)</span>
+            <Calendar className="h-3.5 w-3.5 text-navy-900 shrink-0" />
+            <span className="font-semibold text-charcoal">{formatDate(booking.scheduledDate)}</span>
+            <span className="text-charcoal-muted">at</span>
+            <span className="font-semibold text-charcoal">{booking.scheduledStartTime}</span>
+            <span className="text-charcoal-muted">({booking.durationHours} hrs duration)</span>
           </div>
 
           <div className="flex items-start gap-2">
-            <MapPin className="h-3.5 w-3.5 text-emerald-600 shrink-0 mt-0.5" />
-            <span className="truncate leading-tight text-slate-700">{booking.meetingLocation.address}</span>
+            <MapPin className="h-3.5 w-3.5 text-[#2583E8] shrink-0 mt-0.5" />
+            <span className="truncate leading-tight text-charcoal">{booking.meetingLocation.address}</span>
           </div>
         </div>
 
         {/* Start OTP Banner (for active/confirmed bookings) */}
         {booking.status === 'companion_arriving' && booking.verificationOtp && (
-          <div className="mb-4 p-3 rounded-xl bg-purple-50 border border-purple-200 flex items-center justify-between text-xs">
+          <div className="mb-4 p-3.5 rounded-xl bg-navy-50 border border-navy-200 flex items-center justify-between text-xs">
             <div>
-              <span className="font-bold text-purple-900 block">Start Verification PIN</span>
-              <span className="text-purple-600">Share with companion at meeting</span>
+              <span className="font-bold text-navy-900 block">Session Verification PIN</span>
+              <span className="text-charcoal-muted text-[11px]">Share with companion to start</span>
             </div>
-            <span className="text-lg font-black tracking-widest text-purple-950 bg-white px-2.5 py-1 rounded-lg border border-purple-200">
+            <span className="text-lg font-black tracking-widest text-navy-900 bg-white px-3 py-1 rounded-lg border border-charcoal-border shadow-subtle">
               {booking.verificationOtp}
             </span>
           </div>
@@ -115,7 +115,7 @@ export function BookingCard({
         {/* Action Buttons based on status & role */}
         <div className="pt-2 flex items-center justify-between gap-2 flex-wrap">
           <Link href={`/bookings/${booking.id}`}>
-            <Button variant="outline" size="sm" className="text-xs h-9">
+            <Button variant="outline" size="sm" className="text-xs h-9 font-semibold">
               View Details
             </Button>
           </Link>
@@ -124,7 +124,7 @@ export function BookingCard({
             {/* Live GPS Track link when arriving or active */}
             {(booking.status === 'companion_arriving' || booking.status === 'active') && (
               <Link href={`/bookings/${booking.id}#live-map`}>
-                <Button size="sm" className="bg-primary-600 hover:bg-primary-700 text-white text-xs h-9 gap-1.5">
+                <Button size="sm" className="bg-[#2583E8] hover:bg-[#1C6EC5] text-white text-xs h-9 gap-1.5 font-bold shadow-subtle">
                   <Navigation className="h-3.5 w-3.5 animate-pulse" />
                   Live GPS Track
                 </Button>
@@ -138,14 +138,14 @@ export function BookingCard({
                   size="sm"
                   variant="outline"
                   onClick={() => onReject?.(booking.id)}
-                  className="text-rose-600 border-rose-200 hover:bg-rose-50 text-xs h-9"
+                  className="text-rose-600 border-rose-200 hover:bg-rose-50 text-xs h-9 font-semibold"
                 >
                   <XCircle className="h-3.5 w-3.5 mr-1" /> Decline
                 </Button>
                 <Button
                   size="sm"
                   onClick={() => onAccept?.(booking.id)}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white text-xs h-9"
+                  className="bg-accent hover:bg-accent-hover text-white text-xs h-9 font-bold shadow-subtle"
                 >
                   <CheckCircle2 className="h-3.5 w-3.5 mr-1" /> Accept Request
                 </Button>
@@ -158,7 +158,7 @@ export function BookingCard({
                 variant="ghost"
                 size="sm"
                 onClick={() => onCancel?.(booking.id)}
-                className="text-slate-500 hover:text-rose-600 text-xs h-9"
+                className="text-charcoal-muted hover:text-rose-600 text-xs h-9 font-semibold"
               >
                 Cancel
               </Button>
@@ -169,4 +169,3 @@ export function BookingCard({
     </Card>
   );
 }
-

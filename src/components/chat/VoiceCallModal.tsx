@@ -41,27 +41,27 @@ export function VoiceCallModal({
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
-      <div className="fixed inset-0 bg-slate-950/70 backdrop-blur-md" />
+      <div className="fixed inset-0 bg-[#0E172B]/80 backdrop-blur-xs" />
 
       {/* Call Dialog */}
-      <div className="relative w-full max-w-sm rounded-3xl bg-navy-950 text-white p-8 shadow-2xl border border-navy-800 text-center animate-in fade-in zoom-in-95 z-10 space-y-6">
+      <div className="relative w-full max-w-sm rounded-3xl bg-[#14213D] text-white p-8 shadow-floating border border-[#1B2C4F] text-center animate-in fade-in zoom-in-95 z-10 space-y-6">
         {/* Pulsing Avatar / Wave */}
         <div className="relative mx-auto w-24 h-24 flex items-center justify-center">
           <div
-            className={`absolute inset-0 rounded-full bg-emerald-500/20 ${
+            className={`absolute inset-0 rounded-full bg-accent/20 ${
               callStatus === 'ringing' || callStatus === 'initiating' ? 'animate-ping' : ''
             }`}
           />
-          <div className="relative h-20 w-20 rounded-full bg-navy-900 border-2 border-emerald-500/40 flex items-center justify-center shadow-lg">
-            <Phone className="h-8 w-8 text-emerald-400" />
+          <div className="relative h-20 w-20 rounded-full bg-white/10 border-2 border-accent/40 flex items-center justify-center shadow-subtle">
+            <Phone className="h-8 w-8 text-accent" />
           </div>
         </div>
 
         <div>
-          <h3 className="text-xl font-black tracking-tight text-white">
+          <h3 className="text-xl font-bold tracking-tight text-white">
             {callerName || 'Companion Session'}
           </h3>
-          <p className="text-xs text-emerald-400 font-semibold mt-1">
+          <p className="text-xs text-accent font-semibold mt-1">
             {callStatus === 'initiating' && 'Initiating WebRTC Audio…'}
             {callStatus === 'ringing' && (isIncoming ? 'Incoming Voice Call…' : 'Ringing…')}
             {callStatus === 'connected' && `Call in progress (${formatTimer(durationSeconds)})`}
@@ -72,8 +72,8 @@ export function VoiceCallModal({
         </div>
 
         {/* Security Notice */}
-        <div className="flex items-center justify-center gap-1.5 text-[11px] text-slate-400">
-          <ShieldCheck className="h-3.5 w-3.5 text-emerald-400" />
+        <div className="flex items-center justify-center gap-1.5 text-[11px] text-[#A9B4C7]">
+          <ShieldCheck className="h-3.5 w-3.5 text-accent" />
           <span>Encrypted 1-to-1 WebRTC Voice Session</span>
         </div>
 
@@ -84,14 +84,14 @@ export function VoiceCallModal({
             <>
               <button
                 onClick={onReject}
-                className="h-14 w-14 rounded-full bg-rose-600 hover:bg-rose-700 text-white flex items-center justify-center shadow-lg transition-transform active:scale-95"
+                className="h-14 w-14 rounded-full bg-rose-600 hover:bg-rose-700 text-white flex items-center justify-center shadow-subtle transition-transform active:scale-95"
                 title="Decline Call"
               >
                 <PhoneOff className="h-6 w-6" />
               </button>
               <button
                 onClick={onAnswer}
-                className="h-14 w-14 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white flex items-center justify-center shadow-lg transition-transform active:scale-95 animate-pulse"
+                className="h-14 w-14 rounded-full bg-accent hover:bg-accent-hover text-white flex items-center justify-center shadow-subtle transition-transform active:scale-95 animate-pulse"
                 title="Accept Call"
               >
                 <Phone className="h-6 w-6" />
@@ -104,7 +104,7 @@ export function VoiceCallModal({
                 <button
                   onClick={onToggleMute}
                   className={`h-12 w-12 rounded-full flex items-center justify-center transition-colors ${
-                    isMuted ? 'bg-amber-500 text-white' : 'bg-navy-800 text-slate-300 hover:bg-navy-700'
+                    isMuted ? 'bg-amber-500 text-white' : 'bg-white/10 text-white hover:bg-white/20'
                   }`}
                   title={isMuted ? 'Unmute' : 'Mute'}
                 >
@@ -118,7 +118,7 @@ export function VoiceCallModal({
                 callStatus === 'connected') && (
                 <button
                   onClick={onEndCall}
-                  className="h-14 w-14 rounded-full bg-rose-600 hover:bg-rose-700 text-white flex items-center justify-center shadow-lg transition-transform active:scale-95"
+                  className="h-14 w-14 rounded-full bg-rose-600 hover:bg-rose-700 text-white flex items-center justify-center shadow-subtle transition-transform active:scale-95"
                   title="End Call"
                 >
                   <PhoneOff className="h-6 w-6" />
@@ -131,4 +131,3 @@ export function VoiceCallModal({
     </div>
   );
 }
-

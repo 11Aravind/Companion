@@ -105,24 +105,24 @@ export default function AdminVerificationsPage() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 text-charcoal">
       {/* Title & Queue Metrics */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-navy-950">ID Verification Queue</h2>
-          <p className="text-sm text-slate-500 mt-0.5">
-            Strict biometric and government credential verification required before companions can take live bookings.
+          <h2 className="text-2xl font-black text-navy-900 tracking-tight">ID Verification Queue</h2>
+          <p className="text-xs text-charcoal-muted mt-0.5">
+            Strict biometric and government credential verification required before companions can take live bookings
           </p>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-1.5 p-1 bg-white rounded-xl border border-charcoal-border shadow-subtle self-start md:self-auto">
           {(['pending', 'verified', 'rejected', 'all'] as const).map((tab) => (
             <button
               key={tab}
               onClick={() => setFilter(tab)}
-              className={`px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-bold capitalize transition-all ${
                 filter === tab
-                  ? 'bg-navy-900 text-white shadow-sm'
-                  : 'bg-white border border-slate-200 text-slate-600 hover:bg-slate-50'
+                  ? 'bg-navy-900 text-white shadow-subtle'
+                  : 'text-charcoal-muted hover:text-navy-900'
               }`}
             >
               {tab} (
@@ -135,11 +135,11 @@ export default function AdminVerificationsPage() {
         </div>
       </div>
 
-      {/* Verifications Table */}
-      <Card className="overflow-hidden border border-slate-200 shadow-sm">
+      {/* Verifications Table (Stripe Style) */}
+      <Card className="rounded-3xl border border-charcoal-border shadow-subtle bg-white overflow-hidden">
         <div className="overflow-x-auto">
-          <table className="w-full text-left text-sm">
-            <thead className="bg-slate-50 border-b border-slate-200 text-xs font-bold uppercase tracking-wider text-slate-500">
+          <table className="w-full text-left text-xs">
+            <thead className="bg-[#F7F8FA] border-b border-charcoal-border text-[10px] font-bold uppercase tracking-wider text-charcoal-muted">
               <tr>
                 <th className="py-3 px-4">Applicant</th>
                 <th className="py-3 px-4">Credential Type</th>
@@ -149,44 +149,44 @@ export default function AdminVerificationsPage() {
                 <th className="py-3 px-4 text-right">Review</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100 bg-white">
+            <tbody className="divide-y divide-charcoal-border/70 bg-white">
               {filtered.map((item) => (
-                <tr key={item.id} className="hover:bg-slate-50/70 transition-colors">
+                <tr key={item.id} className="hover:bg-navy-50/50 transition-colors">
                   <td className="py-3.5 px-4">
                     <div>
-                      <span className="font-semibold text-navy-950 block">{item.companion_name}</span>
-                      <span className="text-xs text-slate-500">{item.companion_email}</span>
+                      <span className="font-bold text-navy-900 block">{item.companion_name}</span>
+                      <span className="text-[11px] text-charcoal-muted">{item.companion_email}</span>
                     </div>
                   </td>
 
                   <td className="py-3.5 px-4">
-                    <span className="inline-flex items-center gap-1.5 font-medium text-slate-700 capitalize text-xs bg-slate-100 px-2.5 py-1 rounded-md">
-                      <FileText className="h-3.5 w-3.5 text-slate-500" />
+                    <span className="inline-flex items-center gap-1.5 font-bold text-navy-900 capitalize text-xs bg-navy-50 px-2.5 py-1 rounded-md border border-charcoal-border">
+                      <FileText className="h-3.5 w-3.5 text-charcoal-muted" />
                       {item.id_type.replace('_', ' ')}
                     </span>
                   </td>
 
-                  <td className="py-3.5 px-4 font-mono text-xs font-bold text-slate-800">
+                  <td className="py-3.5 px-4 font-mono text-xs font-bold text-navy-900">
                     {item.id_number_masked}
                   </td>
 
-                  <td className="py-3.5 px-4 text-xs text-slate-500">
+                  <td className="py-3.5 px-4 text-xs text-charcoal-muted">
                     {item.submitted_at}
                   </td>
 
                   <td className="py-3.5 px-4">
                     {item.status === 'pending' && (
-                      <Badge variant="warning" className="gap-1 text-[11px]">
+                      <Badge variant="warning" className="gap-1 text-[10px] py-0.5">
                         <Clock className="h-3 w-3" /> Awaiting Review
                       </Badge>
                     )}
                     {item.status === 'verified' && (
-                      <Badge variant="success" className="gap-1 text-[11px]">
+                      <Badge variant="success" className="gap-1 text-[10px] py-0.5">
                         <CheckCircle className="h-3 w-3" /> Approved
                       </Badge>
                     )}
                     {item.status === 'rejected' && (
-                      <Badge variant="danger" className="gap-1 text-[11px]">
+                      <Badge variant="danger" className="gap-1 text-[10px] py-0.5">
                         <XCircle className="h-3 w-3" /> Rejected
                       </Badge>
                     )}
@@ -195,12 +195,12 @@ export default function AdminVerificationsPage() {
                   <td className="py-3.5 px-4 text-right">
                     <Button
                       size="sm"
-                      variant="secondary"
+                      variant="outline"
                       onClick={() => {
                         setInspectRecord(item);
                         setShowRejectBox(false);
                       }}
-                      className="text-xs h-8 px-3"
+                      className="text-xs h-7 px-3 font-bold border-charcoal-border"
                     >
                       <Eye className="h-3.5 w-3.5 mr-1.5" /> Inspect
                     </Button>
@@ -210,7 +210,7 @@ export default function AdminVerificationsPage() {
 
               {filtered.length === 0 && (
                 <tr>
-                  <td colSpan={6} className="py-8 text-center text-slate-500">
+                  <td colSpan={6} className="py-8 text-center text-charcoal-muted">
                     No verification records in &quot;{filter}&quot; state.
                   </td>
                 </tr>
@@ -228,26 +228,26 @@ export default function AdminVerificationsPage() {
           title={`Credential Audit: ${inspectRecord.companion_name}`}
         >
           <div className="space-y-5">
-            <div className="bg-slate-50 p-3 rounded-xl border border-slate-200 text-xs flex justify-between items-center">
+            <div className="bg-navy-50 p-3.5 rounded-2xl border border-charcoal-border text-xs flex justify-between items-center">
               <div>
-                <span className="text-slate-500 block">Document Type</span>
-                <span className="font-bold text-navy-950 uppercase">{inspectRecord.id_type}</span>
+                <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Document Type</span>
+                <span className="font-bold text-navy-900 uppercase">{inspectRecord.id_type}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Masked ID Number</span>
-                <span className="font-mono font-bold text-navy-950">{inspectRecord.id_number_masked}</span>
+                <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Masked ID Number</span>
+                <span className="font-mono font-bold text-navy-900">{inspectRecord.id_number_masked}</span>
               </div>
               <div>
-                <span className="text-slate-500 block">Status</span>
-                <span className="capitalize font-bold text-primary-600">{inspectRecord.status}</span>
+                <span className="text-charcoal-muted block text-[10px] uppercase font-bold">Status</span>
+                <span className="capitalize font-bold text-accent">{inspectRecord.status}</span>
               </div>
             </div>
 
             {/* Document & Selfie Side-by-Side Comparison */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div className="border border-slate-200 rounded-xl p-3 bg-white">
-                <span className="text-xs font-bold text-slate-700 block mb-2">Government Document Scan</span>
-                <div className="h-48 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+              <div className="border border-charcoal-border rounded-2xl p-3 bg-white">
+                <span className="text-xs font-bold text-navy-900 block mb-2">Government Document Scan</span>
+                <div className="h-48 rounded-xl overflow-hidden bg-navy-50 flex items-center justify-center border border-charcoal-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={inspectRecord.front_image_url}
@@ -257,9 +257,9 @@ export default function AdminVerificationsPage() {
                 </div>
               </div>
 
-              <div className="border border-slate-200 rounded-xl p-3 bg-white">
-                <span className="text-xs font-bold text-slate-700 block mb-2">Biometric Selfie Match</span>
-                <div className="h-48 rounded-lg overflow-hidden bg-slate-100 flex items-center justify-center border">
+              <div className="border border-charcoal-border rounded-2xl p-3 bg-white">
+                <span className="text-xs font-bold text-navy-900 block mb-2">Biometric Selfie Match</span>
+                <div className="h-48 rounded-xl overflow-hidden bg-navy-50 flex items-center justify-center border border-charcoal-border">
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img
                     src={inspectRecord.selfie_image_url}
@@ -271,14 +271,14 @@ export default function AdminVerificationsPage() {
             </div>
 
             {inspectRecord.rejection_reason && (
-              <div className="p-3 bg-red-50 border border-red-200 rounded-xl text-xs text-red-800">
+              <div className="p-3.5 bg-rose-50 border border-rose-200 rounded-2xl text-xs text-rose-800">
                 <span className="font-bold block mb-0.5">Previous Rejection Reason:</span>
                 {inspectRecord.rejection_reason}
               </div>
             )}
 
             {showRejectBox && (
-              <div className="space-y-2 p-3 bg-amber-50 rounded-xl border border-amber-200">
+              <div className="space-y-2 p-3.5 bg-amber-50 rounded-2xl border border-amber-200">
                 <label className="text-xs font-bold text-amber-900 block">
                   Rejection Reason (Delivered to Companion)
                 </label>
@@ -287,18 +287,19 @@ export default function AdminVerificationsPage() {
                   value={rejectionInput}
                   onChange={(e) => setRejectionInput(e.target.value)}
                   placeholder="e.g. Document image is blurry or expired. Please upload high-res color photo."
-                  className="w-full text-xs p-2 rounded-lg border border-amber-300 bg-white"
+                  className="w-full text-xs p-2.5 rounded-xl border border-amber-300 bg-white focus:outline-none"
                 />
               </div>
             )}
 
             {/* Decision Buttons */}
-            <div className="flex items-center justify-between pt-2 border-t border-slate-200">
+            <div className="flex items-center justify-between pt-2 border-t border-charcoal-border">
               <Button
-                variant="secondary"
+                variant="outline"
                 size="sm"
                 onClick={() => setInspectRecord(null)}
                 disabled={processing}
+                className="font-bold border-charcoal-border"
               >
                 Close
               </Button>
@@ -310,6 +311,7 @@ export default function AdminVerificationsPage() {
                     size="sm"
                     disabled={processing}
                     onClick={() => setShowRejectBox(true)}
+                    className="font-bold shadow-subtle"
                   >
                     Reject Credential
                   </Button>
@@ -319,6 +321,7 @@ export default function AdminVerificationsPage() {
                     size="sm"
                     disabled={processing}
                     onClick={() => handleReview(inspectRecord, 'rejected')}
+                    className="font-bold shadow-subtle"
                   >
                     Confirm Rejection
                   </Button>
@@ -329,7 +332,7 @@ export default function AdminVerificationsPage() {
                   size="sm"
                   disabled={processing}
                   onClick={() => handleReview(inspectRecord, 'verified')}
-                  className="bg-emerald-600 hover:bg-emerald-700"
+                  className="bg-accent hover:bg-accent-hover text-white font-bold shadow-subtle"
                 >
                   <CheckCircle className="h-4 w-4 mr-1.5" /> Approve & Verify
                 </Button>
@@ -341,4 +344,3 @@ export default function AdminVerificationsPage() {
     </div>
   );
 }
-

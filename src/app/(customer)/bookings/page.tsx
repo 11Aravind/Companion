@@ -82,28 +82,28 @@ export default function CustomerBookingsPage() {
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 flex flex-col">
+    <div className="min-h-screen bg-[#F7F8FA] flex flex-col text-charcoal">
       <CustomerHeader />
 
-      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-8 max-w-5xl">
+      <main className="flex-1 container mx-auto px-4 sm:px-6 py-8 pb-24 md:pb-12 max-w-5xl">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
           <div>
-            <h1 className="text-2xl font-black text-navy-950 tracking-tight">My Companion Bookings</h1>
-            <p className="text-xs text-slate-500 mt-1">
-              Manage your upcoming sessions, active location tracking, and receipts
+            <h1 className="text-2xl font-black text-navy-900 tracking-tight">My Bookings</h1>
+            <p className="text-xs text-charcoal-muted mt-0.5">
+              Review current sessions, live companion tracking, and receipts
             </p>
           </div>
 
           {/* Filter Tabs */}
-          <div className="flex bg-slate-100 p-1 rounded-xl border border-slate-200 text-xs font-semibold">
+          <div className="flex bg-white p-1 rounded-xl border border-charcoal-border text-xs font-bold shadow-subtle self-start sm:self-auto">
             {(['all', 'active', 'completed', 'cancelled'] as const).map((tab) => (
               <button
                 key={tab}
                 onClick={() => setFilter(tab)}
-                className={`px-3 py-1.5 rounded-lg capitalize transition-all ${
+                className={`px-3.5 py-1.5 rounded-lg capitalize transition-all ${
                   filter === tab
-                    ? 'bg-white text-navy-950 shadow-sm'
-                    : 'text-slate-500 hover:text-navy-900'
+                    ? 'bg-navy-900 text-white shadow-subtle'
+                    : 'text-charcoal-muted hover:text-navy-900'
                 }`}
               >
                 {tab}
@@ -114,8 +114,8 @@ export default function CustomerBookingsPage() {
 
         <div className="space-y-4">
           {filtered.length === 0 ? (
-            <div className="text-center py-16 bg-white rounded-2xl border border-slate-200 p-8">
-              <p className="text-slate-500 text-sm">No bookings found for the selected filter.</p>
+            <div className="text-center py-16 bg-white rounded-3xl border border-charcoal-border p-8 shadow-subtle">
+              <p className="text-charcoal-muted text-xs font-semibold">No bookings found for the selected filter.</p>
             </div>
           ) : (
             filtered.map((booking) => (
@@ -127,4 +127,3 @@ export default function CustomerBookingsPage() {
     </div>
   );
 }
-

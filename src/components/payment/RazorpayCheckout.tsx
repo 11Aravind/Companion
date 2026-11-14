@@ -131,7 +131,7 @@ export function RazorpayCheckout({
           contact: customerPhone || '',
         },
         theme: {
-          color: '#0B132B', // Brand Dark Navy
+          color: '#14213D', // Deep Navy
         },
         modal: {
           ondismiss: () => {
@@ -151,12 +151,12 @@ export function RazorpayCheckout({
 
   if (isPaid) {
     return (
-      <div className="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-semibold flex items-center justify-between">
+      <div className="p-4 rounded-xl bg-emerald-50/70 border border-emerald-200 text-[#14213D] text-xs font-medium flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <CheckCircle2 className="h-5 w-5 text-emerald-600" />
+          <CheckCircle2 className="h-5 w-5 text-[#16A36A]" />
           <span>Payment of {formatCurrency(amount, currency)} Captured Successfully</span>
         </div>
-        <span className="text-[11px] font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded">
+        <span className="text-[11px] font-semibold text-[#16A36A] bg-white border border-emerald-200 px-2.5 py-0.5 rounded-full">
           Paid via Razorpay
         </span>
       </div>
@@ -167,7 +167,7 @@ export function RazorpayCheckout({
     <Button
       onClick={handlePayment}
       isLoading={isLoading}
-      className="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-bold h-12 rounded-xl shadow-md gap-2"
+      className="w-full bg-[#14213D] hover:bg-navy-800 text-white font-semibold h-11 rounded-xl shadow-subtle gap-2"
     >
       <CreditCard className="h-4 w-4" />
       <span>Pay {formatCurrency(amount, currency)} via Razorpay</span>

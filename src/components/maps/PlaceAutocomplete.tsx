@@ -75,7 +75,7 @@ export function PlaceAutocomplete({
       value={value}
       onChange={(e) => onChangeText(e.target.value)}
       placeholder={placeholder}
-      icon={<MapPin className="h-4 w-4 text-emerald-600" />}
+      icon={<MapPin className="h-4 w-4 text-[#2583E8]" />}
       className={className}
     />
   );
