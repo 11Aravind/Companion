@@ -6,7 +6,7 @@ export const viewport: Viewport = {
   width: 'device-width',
   initialScale: 1,
   maximumScale: 5,
-  themeColor: '#14213D',
+  themeColor: '#000000',
 };
 
 export const metadata: Metadata = {
@@ -47,7 +47,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-[#F7F8FA] text-[#20242C] font-sans antialiased selection:bg-[#14213D] selection:text-white">
+      <body className="min-h-screen bg-white text-black font-sans antialiased selection:bg-black selection:text-white">
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>

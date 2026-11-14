@@ -2,21 +2,16 @@
 
 import Link from 'next/link';
 import {
-  HeartHandshake,
   ShieldCheck,
   MapPin,
   Clock,
-  Sparkles,
   ArrowRight,
   Search,
   CheckCircle2,
   Lock,
-  PhoneCall,
   UserCheck,
   Star,
-  Play,
-  Building2,
-  ChevronDown,
+  Users,
 } from 'lucide-react';
 import { SiteHeader } from '@/components/shell/SiteHeader';
 import { SiteFooter } from '@/components/shell/SiteFooter';
@@ -85,230 +80,125 @@ const DEMO_COMPANIONS: CompanionProfile[] = [
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col min-h-screen bg-[#F7F8FA] text-charcoal">
+    <div className="flex flex-col min-h-screen bg-white text-black font-uber">
       <SiteHeader />
 
       <main className="flex-1">
-        {/* Hero Section matching the user's reference design */}
-        <section className="relative overflow-hidden bg-[#0C1E34] text-white pt-12 sm:pt-16 lg:pt-20 pb-28 sm:pb-36 lg:pb-36 px-4 sm:px-6">
-          <div className="container mx-auto relative z-10 max-w-6xl">
-            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-8 items-center">
+        {/* Uber Hero Section (Black & White, Reduced Text, Uber Move Typography) */}
+        <section className="relative bg-black text-white py-14 sm:py-20 lg:py-24 px-4 sm:px-6">
+          <div className="container mx-auto max-w-6xl">
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
               
-              {/* Left Column: Heading, Subheading, CTAs, Trust indicators */}
-              <div className="lg:col-span-7 text-left z-20">
-                {/* Verified badge */}
-                <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 text-white text-xs font-semibold mb-6 border border-white/15 backdrop-blur-sm">
-                  <ShieldCheck className="h-4 w-4 text-amber-400 fill-amber-400/20" />
-                  <span className="tracking-wider uppercase text-[11px] font-bold text-white/90">
-                    VERIFIED PERSONAL COMPANIONS
-                  </span>
+              {/* Left Column: Uber Request Hub */}
+              <div className="lg:col-span-7 text-left">
+                {/* Uber-style Category Tabs */}
+                <div className="flex items-center gap-2 mb-6">
+                  <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white text-black text-xs font-medium">
+                    <Users className="h-4 w-4" />
+                    <span>Request Companion</span>
+                  </div>
+                  <Link
+                    href="/signup?role=companion"
+                    className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-neutral-900 text-neutral-400 hover:text-white text-xs font-medium transition-colors"
+                  >
+                    <span>Earn as Companion</span>
+                  </Link>
                 </div>
 
-                {/* Main Headline */}
-                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight leading-[1.12]">
-                  Good company <br />
-                  makes every <br />
-                  journey{' '}
-                  <span className="relative inline-block text-[#4ADE80]">
-                    better.
-                    {/* Hand-drawn yellow double wavy underline */}
-                    <svg
-                      className="absolute -bottom-2.5 left-0 w-full h-3.5 text-amber-400"
-                      viewBox="0 0 100 20"
-                      fill="none"
-                      preserveAspectRatio="none"
-                    >
-                      <path
-                        d="M0 8 Q25 0 50 8 T100 8"
-                        stroke="currentColor"
-                        strokeWidth="3.5"
-                        strokeLinecap="round"
-                      />
-                      <path
-                        d="M5 15 Q30 7 55 15 T95 15"
-                        stroke="currentColor"
-                        strokeWidth="2.5"
-                        strokeLinecap="round"
-                      />
-                    </svg>
-                  </span>
+                {/* Uber Headline (Bold, Tight Tracking) */}
+                <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.08]">
+                  Go anywhere. <br />
+                  With someone you trust.
                 </h1>
 
-                {/* Subtitle */}
-                <p className="mt-6 text-sm sm:text-base lg:text-lg text-white/85 max-w-lg leading-relaxed font-normal">
-                  Find trusted companions for hospital visits, shopping, dining, city exploration and everyday activities.
+                {/* Reduced Subtitle */}
+                <p className="mt-4 text-base sm:text-lg text-neutral-300 font-normal max-w-lg">
+                  Request a verified personal companion for hospital appointments, shopping, dining, or travel.
                 </p>
 
-                {/* Action Buttons */}
-                <div className="mt-8 flex flex-wrap items-center gap-4">
-                  <Link href="/companions">
+                {/* Uber Booking Card */}
+                <div className="mt-8 bg-white text-black p-5 sm:p-6 rounded-2xl shadow-xl max-w-lg">
+                  <div className="space-y-2.5 mb-3.5">
+                    {/* Location field with Uber dot */}
+                    <div className="relative">
+                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-black shrink-0" />
+                      <input
+                        type="text"
+                        placeholder="Meeting location"
+                        defaultValue="Chennai Central"
+                        className="w-full bg-[#F6F6F6] text-black font-medium text-sm pl-9 pr-4 py-3.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black placeholder:text-neutral-400"
+                      />
+                    </div>
+
+                    {/* Activity field with Uber square */}
+                    <div className="relative">
+                      <div className="absolute left-3.5 top-1/2 -translate-y-1/2 w-2.5 h-2.5 bg-black shrink-0" />
+                      <select
+                        aria-label="Select Activity"
+                        className="w-full bg-[#F6F6F6] text-black font-medium text-sm pl-9 pr-4 py-3.5 rounded-lg focus:outline-none focus:ring-1 focus:ring-black cursor-pointer truncate"
+                        defaultValue="all"
+                      >
+                        <option value="all">Select activity (Hospital, Shopping, Dining...)</option>
+                        <option value="hospital-visit">Hospital & Clinic Visit</option>
+                        <option value="shopping">Shopping & Errands</option>
+                        <option value="restaurant-dining">Dining & Coffee Chat</option>
+                        <option value="travel-city-tour">City Tour & Travel Transit</option>
+                        <option value="events-social">Social Events & Weddings</option>
+                        <option value="general-companion">General Companionship</option>
+                      </select>
+                    </div>
+                  </div>
+
+                  {/* Uber Full-width CTA */}
+                  <Link href="/companions" className="block w-full">
                     <Button
                       size="lg"
-                      className="bg-[#F59E0B] hover:bg-[#D97706] text-slate-950 font-black h-12 px-7 rounded-full text-sm sm:text-base shadow-lg flex items-center gap-2 transition-all hover:scale-[1.02] active:scale-[0.98]"
+                      className="w-full bg-black hover:bg-neutral-800 text-white font-medium h-12 rounded-lg text-sm sm:text-base transition-colors"
                     >
-                      <span>Find a Companion</span>
-                      <ArrowRight className="h-4 w-4" />
+                      See available companions
                     </Button>
                   </Link>
 
-                  <Link href="/#how-it-works">
-                    <button
-                      type="button"
-                      className="inline-flex items-center gap-3 text-white hover:text-amber-400 font-bold text-sm sm:text-base py-2 px-3 transition-colors group"
-                    >
-                      <div className="h-9 w-9 rounded-full border-2 border-white/80 group-hover:border-amber-400 flex items-center justify-center shrink-0 transition-colors">
-                        <Play className="h-3.5 w-3.5 fill-white text-white group-hover:fill-amber-400 group-hover:text-amber-400 ml-0.5 transition-colors" />
-                      </div>
-                      <span>How it Works</span>
-                    </button>
-                  </Link>
-                </div>
-
-                {/* Trust Badges */}
-                <div className="mt-9 flex flex-wrap items-center gap-3 sm:gap-4 text-xs font-semibold text-white/85">
-                  <span className="flex items-center gap-1.5">
-                    <ShieldCheck className="h-4 w-4 text-[#4ADE80]" />
-                    <span>ID Verified</span>
-                  </span>
-                  <span className="text-white/30">|</span>
-                  <span className="flex items-center gap-1.5">
-                    <Lock className="h-4 w-4 text-[#4ADE80]" />
-                    <span>Secure Booking</span>
-                  </span>
-                  <span className="text-white/30">|</span>
-                  <span className="flex items-center gap-1.5">
-                    <MapPin className="h-4 w-4 text-[#4ADE80]" />
-                    <span>GPS Tracking</span>
-                  </span>
+                  {/* Micro Trust */}
+                  <p className="mt-3 text-xs text-neutral-500 text-center font-normal">
+                    Verified companions • Live GPS tracking • In-person PIN
+                  </p>
                 </div>
               </div>
 
-              {/* Right Column: Hero Companion Image with Organic Wave & Hand-drawn Accent Marks */}
-              <div className="lg:col-span-5 relative mt-6 lg:mt-0 flex justify-center lg:justify-end">
-                <div className="relative w-full max-w-[480px]">
-                  {/* Playful Yellow Sparkle / Accent Marks near senior's head */}
-                  <div className="absolute top-2 left-6 z-20 text-amber-400 pointer-events-none select-none">
-                    <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
-                      <path d="M6 24 C10 16 14 12 16 8" stroke="#FBBF24" strokeWidth="3" strokeLinecap="round" />
-                      <path d="M18 20 C22 12 26 8 28 4" stroke="#FBBF24" strokeWidth="3" strokeLinecap="round" />
-                      <path d="M26 24 C30 18 34 14 36 10" stroke="#FBBF24" strokeWidth="3" strokeLinecap="round" />
-                    </svg>
-                  </div>
-
-                  {/* Organic curved photo frame */}
-                  <div className="relative rounded-3xl overflow-hidden shadow-2xl border border-white/10 bg-gradient-to-tr from-[#0C1E34] via-[#0F2847] to-[#12335C]">
-                    <img
-                      src="/images/hero-companion.jpg"
-                      alt="Caring verified companion supporting smiling elderly woman outdoors"
-                      className="w-full h-auto object-cover object-center max-h-[440px] rounded-3xl"
-                    />
-
-                    {/* Subtle green leaves / organic accent decor in bottom corner */}
-                    <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-emerald-500/20 rounded-full blur-2xl pointer-events-none" />
+              {/* Right Column: Hero Visual */}
+              <div className="lg:col-span-5 relative flex justify-center lg:justify-end">
+                <div className="relative w-full max-w-[460px] rounded-2xl overflow-hidden shadow-2xl border border-neutral-800 bg-neutral-950">
+                  <img
+                    src="/images/hero-companion.jpg"
+                    alt="Verified companion supporting senior citizen"
+                    className="w-full h-auto object-cover object-center max-h-[440px] rounded-2xl"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none" />
+                  <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-black/80 backdrop-blur-md border border-white/10 text-white text-xs flex items-center justify-between">
+                    <span className="font-medium">1,200+ Verified Companions</span>
+                    <span className="text-neutral-400">12 Cities</span>
                   </div>
                 </div>
               </div>
 
             </div>
-          </div>
-
-          {/* Organic White Wave Curve at bottom */}
-          <div className="absolute bottom-0 left-0 right-0 w-full overflow-hidden leading-none pointer-events-none">
-            <svg
-              className="relative block w-full h-12 sm:h-16 lg:h-20 text-[#F7F8FA]"
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-              fill="currentColor"
-            >
-              <path d="M0,0 C300,90 900,90 1200,0 L1200,120 L0,120 Z" />
-            </svg>
           </div>
         </section>
 
-        {/* Floating Search Bar (Positioned overlapping the bottom curve) */}
-        <div className="relative z-30 -mt-12 sm:-mt-16 lg:-mt-14 px-4 sm:px-6">
-          <div className="container mx-auto max-w-4xl">
-            <div className="bg-white rounded-2xl sm:rounded-3xl p-3 sm:p-4 shadow-floating border border-slate-100 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3 sm:gap-4">
-              
-              {/* Activity Segment */}
-              <div className="flex-1 flex items-center gap-3 px-3 sm:px-4 py-2 hover:bg-slate-50/80 rounded-xl transition-colors cursor-pointer">
-                <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0">
-                  <Building2 className="h-5 w-5 text-emerald-700" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                    ACTIVITY
-                  </span>
-                  <select
-                    aria-label="Select Activity"
-                    className="w-full bg-transparent text-xs sm:text-sm font-bold text-slate-900 focus:outline-none cursor-pointer truncate"
-                    defaultValue="all"
-                  >
-                    <option value="all">Hospital, Shopping, Dining...</option>
-                    <option value="hospital-visit">Hospital & Clinic Visit</option>
-                    <option value="shopping">Shopping & Errands</option>
-                    <option value="restaurant-dining">Dining & Coffee Chat</option>
-                    <option value="travel-city-tour">City Tour & Travel Transit</option>
-                    <option value="events-social">Social Events & Weddings</option>
-                    <option value="general-companion">General Companionship</option>
-                  </select>
-                </div>
-                <ChevronDown className="h-4 w-4 text-slate-400 shrink-0 hidden sm:block" />
-              </div>
-
-              {/* Divider */}
-              <div className="hidden md:block w-px h-10 bg-slate-200" />
-
-              {/* Location Segment */}
-              <div className="flex-1 flex items-center gap-3 px-3 sm:px-4 py-2 hover:bg-slate-50/80 rounded-xl transition-colors cursor-pointer">
-                <div className="h-10 w-10 rounded-xl bg-emerald-50 border border-emerald-100 flex items-center justify-center shrink-0">
-                  <MapPin className="h-5 w-5 text-emerald-700" />
-                </div>
-                <div className="flex-1 min-w-0">
-                  <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider block">
-                    LOCATION
-                  </span>
-                  <input
-                    type="text"
-                    placeholder="Search nearby companions..."
-                    defaultValue="Chennai Central"
-                    className="w-full bg-transparent text-xs sm:text-sm font-bold text-slate-900 focus:outline-none placeholder:text-slate-400 truncate"
-                  />
-                </div>
-                <ChevronDown className="h-4 w-4 text-slate-400 shrink-0 hidden sm:block" />
-              </div>
-
-              {/* Find Companions CTA Button */}
-              <Link href="/companions" className="shrink-0">
-                <Button
-                  size="lg"
-                  className="w-full md:w-auto bg-[#064E3B] hover:bg-[#043B2C] text-white font-bold h-12 px-7 rounded-xl sm:rounded-2xl flex items-center justify-center gap-2 shadow-md transition-all hover:shadow-lg"
-                >
-                  <Search className="h-4 w-4 text-amber-400 font-bold" />
-                  <span>Find Companions</span>
-                </Button>
-              </Link>
-
-            </div>
-          </div>
-        </div>
-
-        {/* Activity Categories Grid */}
-        <section id="categories" className="py-20 bg-[#F7F8FA] px-4 sm:px-6">
+        {/* Section 1: Ways to Move (Uber Activity Grid - Reduced Text) */}
+        <section id="categories" className="py-16 sm:py-20 bg-white px-4 sm:px-6">
           <div className="container mx-auto max-w-6xl">
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <span className="text-xs font-bold uppercase tracking-wider text-navy-900 bg-navy-50 px-3.5 py-1 rounded-full border border-charcoal-border">
-                Tailored Services
-              </span>
-              <h2 className="text-3xl font-black text-navy-900 mt-3 tracking-tight">
-                Accompaniment for Every Moment
+            <div className="max-w-xl mb-10">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+                Ways to move with Companion
               </h2>
-              <p className="text-xs sm:text-sm text-charcoal-muted mt-2">
-                Every companion is individually vetted, biometric verified, and ready to accompany you with utmost professionalism.
+              <p className="text-sm text-neutral-600 mt-2 font-normal">
+                Choose an accompaniment tailored to your destination.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 sm:gap-5">
               {ACTIVITY_CATEGORIES.map((category) => (
                 <CategoryCard key={category.id} category={category} />
               ))}
@@ -316,67 +206,61 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* How It Works (Minimalist Steps) */}
-        <section id="how-it-works" className="py-20 bg-white px-4 sm:px-6 border-y border-charcoal-border">
+        {/* Section 2: How It Works (Reduced text!) */}
+        <section id="how-it-works" className="py-16 sm:py-20 bg-[#F6F6F6] px-4 sm:px-6 border-y border-[#EEEEEE]">
           <div className="container mx-auto max-w-5xl">
-            <div className="text-center max-w-xl mx-auto mb-14">
-              <span className="text-xs font-bold uppercase tracking-wider text-yellow-700 bg-yellow-50 px-3.5 py-1 rounded-full border border-yellow-200">
-                Simple Booking Flow
-              </span>
-              <h2 className="text-3xl font-black text-navy-900 mt-3 tracking-tight">
-                How Companion Works
+            <div className="max-w-xl mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+                How it works
               </h2>
+              <p className="text-sm text-neutral-600 mt-2 font-normal">
+                Book in three simple steps.
+              </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
               {[
                 {
                   step: '01',
-                  title: 'Select Activity',
-                  desc: 'Pick your activity: hospital assistance, shopping, dining, travel, or general companionship.',
+                  title: 'Choose an activity',
+                  desc: 'Select hospital visits, shopping, dining, or travel transit.',
                 },
                 {
                   step: '02',
-                  title: 'Choose Companion',
-                  desc: 'Browse verified profiles, hourly rates, client reviews, and language proficiencies.',
+                  title: 'Select a companion',
+                  desc: 'Compare verified profiles, languages, reviews, and hourly rates.',
                 },
                 {
                   step: '03',
-                  title: 'Set Date & Place',
-                  desc: 'Specify your meeting location on Google Maps, set appointment date, time, and session duration.',
-                },
-                {
-                  step: '04',
-                  title: 'Meet & Live Track',
-                  desc: 'Track companion en route via real-time GPS, verify with a 4-digit start PIN, and enjoy peace of mind.',
+                  title: 'Meet with verified PIN',
+                  desc: 'Track arrival in real time. Verify your unique 4-digit PIN before starting.',
                 },
               ].map((item, idx) => (
-                <div key={idx} className="relative p-6 rounded-3xl bg-[#F7F8FA] border border-charcoal-border shadow-subtle">
-                  <span className="text-2xl font-black text-navy-900/30 block mb-3 font-mono">{item.step}</span>
-                  <h3 className="text-base font-bold text-navy-900 mb-1.5">{item.title}</h3>
-                  <p className="text-xs text-charcoal-muted leading-relaxed">{item.desc}</p>
+                <div key={idx} className="bg-white p-6 rounded-xl border border-[#EEEEEE]">
+                  <span className="text-sm font-bold text-neutral-400 font-mono block mb-2">{item.step}</span>
+                  <h3 className="text-lg font-bold text-black mb-1.5">{item.title}</h3>
+                  <p className="text-xs text-neutral-600 leading-relaxed font-normal">{item.desc}</p>
                 </div>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Featured Companions Showcase (Airbnb Presentation) */}
-        <section className="py-20 bg-[#F7F8FA] px-4 sm:px-6">
+        {/* Section 3: Featured Companions */}
+        <section className="py-16 sm:py-20 bg-white px-4 sm:px-6">
           <div className="container mx-auto max-w-6xl">
-            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-12">
+            <div className="flex flex-col sm:flex-row sm:items-end justify-between mb-10">
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-navy-900 bg-navy-50 px-3.5 py-1 rounded-full border border-charcoal-border">
-                  Top Rated
-                </span>
-                <h2 className="text-3xl font-black text-navy-900 mt-3 tracking-tight">
-                  Featured Verified Companions
+                <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-black">
+                  Top-rated companions
                 </h2>
-                <p className="text-xs sm:text-sm text-charcoal-muted mt-1">Available today for on-demand or scheduled bookings.</p>
+                <p className="text-sm text-neutral-600 mt-2 font-normal">
+                  Background checked and available today.
+                </p>
               </div>
               <Link href="/companions" className="mt-4 sm:mt-0">
-                <Button variant="outline" size="sm" className="font-bold text-xs gap-1.5 border-charcoal-border">
-                  View All Companions <ArrowRight className="h-3.5 w-3.5" />
+                <Button variant="outline" size="sm" className="font-medium text-xs gap-1.5 rounded-full border-neutral-300">
+                  View all companions <ArrowRight className="h-3.5 w-3.5" />
                 </Button>
               </Link>
             </div>
@@ -389,61 +273,60 @@ export default function HomePage() {
           </div>
         </section>
 
-        {/* Safety & Security Guarantees */}
-        <section id="safety" className="py-20 bg-[#14213D] text-white px-4 sm:px-6">
+        {/* Section 4: Uber Safety (Pure Black section, reduced text) */}
+        <section id="safety" className="py-16 sm:py-20 bg-black text-white px-4 sm:px-6">
           <div className="container mx-auto max-w-5xl">
-            <div className="text-center max-w-2xl mx-auto mb-14">
-              <ShieldCheck className="h-10 w-10 text-yellow-400 mx-auto mb-3" />
-              <h2 className="text-3xl font-black text-white tracking-tight">
-                Your Safety Is Our Priority
+            <div className="max-w-xl mb-12">
+              <h2 className="text-3xl sm:text-4xl font-bold tracking-tight text-white">
+                Our commitment to your safety
               </h2>
-              <p className="text-xs sm:text-sm text-white/70 mt-2">
-                We engineered our platform from the ground up to ensure safety, privacy, and full accountability.
+              <p className="text-sm text-neutral-400 mt-2 font-normal">
+                Built-in safety features designed for every session.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="p-6 rounded-3xl bg-white/5 border border-white/10 shadow-subtle">
-                <UserCheck className="h-6 w-6 text-yellow-400 mb-3" />
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+              <div className="p-6 rounded-xl bg-neutral-900 border border-neutral-800">
+                <ShieldCheck className="h-6 w-6 text-white mb-3" />
                 <h3 className="text-base font-bold text-white mb-1.5">Government ID Verification</h3>
-                <p className="text-xs text-white/70 leading-relaxed">
-                  Every companion must submit verified government credentials and undergo background verification prior to receiving any booking requests.
+                <p className="text-xs text-neutral-400 leading-relaxed font-normal">
+                  Every companion undergoes background verification and credential checks before accepting sessions.
                 </p>
               </div>
 
-              <div className="p-6 rounded-3xl bg-white/5 border border-white/10 shadow-subtle">
-                <Lock className="h-6 w-6 text-[#2583E8] mb-3" />
-                <h3 className="text-base font-bold text-white mb-1.5">Private Location Sharing</h3>
-                <p className="text-xs text-white/70 leading-relaxed">
-                  Companion live GPS is strictly accessible by the customer only after the booking is accepted and en route. Locations are never broadcast publicly.
+              <div className="p-6 rounded-xl bg-neutral-900 border border-neutral-800">
+                <Lock className="h-6 w-6 text-white mb-3" />
+                <h3 className="text-base font-bold text-white mb-1.5">Live GPS Tracking</h3>
+                <p className="text-xs text-neutral-400 leading-relaxed font-normal">
+                  Follow companion arrival in real time. Private location broadcast begins only when en route.
                 </p>
               </div>
 
-              <div className="p-6 rounded-3xl bg-white/5 border border-white/10 shadow-subtle">
-                <PhoneCall className="h-6 w-6 text-yellow-400 mb-3" />
-                <h3 className="text-base font-bold text-white mb-1.5">In-App Chat & Voice Calling</h3>
-                <p className="text-xs text-white/70 leading-relaxed">
-                  Coordinate meeting details without exposing private phone numbers. Secure WebRTC calling and real-time chat right inside the app.
+              <div className="p-6 rounded-xl bg-neutral-900 border border-neutral-800">
+                <CheckCircle2 className="h-6 w-6 text-white mb-3" />
+                <h3 className="text-base font-bold text-white mb-1.5">In-Person PIN Security</h3>
+                <p className="text-xs text-neutral-400 leading-relaxed font-normal">
+                  A unique 4-digit code must be confirmed in person before the booking can begin.
                 </p>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Companion Partner Recruitment CTA */}
-        <section className="py-16 bg-white border-t border-charcoal-border text-charcoal px-4 sm:px-6">
-          <div className="container mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Section 5: Uber Driver / Companion Partner CTA Banner */}
+        <section className="py-16 bg-white border-t border-[#EEEEEE] text-black px-4 sm:px-6">
+          <div className="container mx-auto max-w-5xl flex flex-col md:flex-row items-center justify-between gap-6">
             <div>
-              <h2 className="text-2xl sm:text-3xl font-black text-navy-900 tracking-tight">
-                Become a Verified Companion Partner
+              <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-black">
+                Make money on your schedule
               </h2>
-              <p className="text-xs sm:text-sm text-charcoal-muted mt-1.5 max-w-xl">
-                Set your own hourly rates, choose the activities you enjoy, manage your calendar availability, and earn with purpose.
+              <p className="text-sm text-neutral-600 mt-1 font-normal">
+                Set your own hourly rates, choose activities you enjoy, and earn with purpose.
               </p>
             </div>
             <Link href="/signup?role=companion">
-              <Button size="lg" className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold px-8 rounded-2xl shadow-subtle shrink-0">
-                Register as Companion
+              <Button size="lg" className="bg-black hover:bg-neutral-800 text-white font-medium px-7 h-12 rounded-full text-sm shrink-0">
+                Sign up to accompany
               </Button>
             </Link>
           </div>

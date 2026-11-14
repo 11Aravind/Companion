@@ -14,12 +14,12 @@ export function CompanionCard({
   onBook?: (companion: CompanionProfile) => void;
 }) {
   return (
-    <Card className="rounded-2xl border border-charcoal-border hover:border-navy-300 hover:shadow-card transition-all duration-200 bg-white overflow-hidden flex flex-col justify-between group">
+    <Card className="rounded-xl border border-[#EEEEEE] hover:border-black/30 hover:shadow-md transition-all duration-200 bg-white overflow-hidden flex flex-col justify-between group">
       <CardContent className="p-5">
-        {/* Header: Avatar, Name, Rating, Online indicator (Airbnb styled) */}
+        {/* Header: Avatar, Name, Rating, Online indicator */}
         <div className="flex items-start gap-3.5 mb-3.5">
           <div className="relative">
-            <div className="h-14 w-14 rounded-2xl bg-navy-50 border border-charcoal-border overflow-hidden flex items-center justify-center text-lg font-bold text-navy-900 shrink-0">
+            <div className="h-14 w-14 rounded-full bg-[#F6F6F6] border border-[#EEEEEE] overflow-hidden flex items-center justify-center text-lg font-bold text-black shrink-0">
               {companion.avatarUrl ? (
                 <img
                   src={companion.avatarUrl}
@@ -32,77 +32,77 @@ export function CompanionCard({
             </div>
             {companion.isOnline && (
               <span
-                className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full bg-accent border-2 border-white shadow-subtle"
-                title="Online & Ready for Bookings"
+                className="absolute -bottom-0.5 -right-0.5 h-3.5 w-3.5 rounded-full bg-emerald-500 border-2 border-white"
+                title="Online"
               />
             )}
           </div>
 
           <div className="flex-1 min-w-0">
             <div className="flex items-center gap-1.5 flex-wrap">
-              <h4 className="font-bold text-navy-900 text-base truncate">{companion.fullName}</h4>
+              <h4 className="font-bold text-black text-base truncate">{companion.fullName}</h4>
               {companion.isVerified && (
-                <span title="Government ID Verified">
-                  <ShieldCheck className="h-4 w-4 text-accent shrink-0" />
+                <span title="Verified">
+                  <ShieldCheck className="h-4 w-4 text-black shrink-0" />
                 </span>
               )}
             </div>
 
-            <p className="text-xs text-charcoal-muted font-medium truncate mt-0.5">{companion.headline}</p>
+            <p className="text-xs text-neutral-500 font-normal truncate mt-0.5">{companion.headline}</p>
 
-            <div className="flex items-center gap-2 mt-1.5 text-xs text-charcoal">
-              <span className="flex items-center gap-1 font-bold text-navy-900 bg-navy-50 px-2 py-0.5 rounded-full border border-charcoal-border">
-                <Star className="h-3 w-3 fill-amber-400 text-amber-400" />
+            <div className="flex items-center gap-2 mt-1.5 text-xs text-black">
+              <span className="flex items-center gap-1 font-bold text-black bg-[#F6F6F6] px-2 py-0.5 rounded-md">
+                <Star className="h-3 w-3 fill-black text-black" />
                 {companion.ratingAverage.toFixed(1)}
               </span>
-              <span className="text-charcoal-muted">({companion.ratingCount} reviews)</span>
-              <span className="text-charcoal-muted">•</span>
-              <span className="flex items-center gap-0.5 text-charcoal-muted">
-                <MapPin className="h-3 w-3 text-[#2583E8]" /> {companion.city}
+              <span className="text-neutral-500">({companion.ratingCount})</span>
+              <span className="text-neutral-300">•</span>
+              <span className="flex items-center gap-0.5 text-neutral-500">
+                <MapPin className="h-3 w-3 text-black" /> {companion.city}
               </span>
             </div>
           </div>
         </div>
 
         {/* Bio excerpt */}
-        <p className="text-xs text-charcoal-muted line-clamp-2 mb-3.5 leading-relaxed">
+        <p className="text-xs text-neutral-600 line-clamp-2 mb-3.5 leading-relaxed font-normal">
           {companion.bio}
         </p>
 
         {/* Categories Badges */}
         <div className="flex items-center gap-1.5 flex-wrap mb-4">
           {companion.categories.slice(0, 3).map((cat) => (
-            <Badge key={cat} variant="secondary" className="text-[10px] px-2.5 py-0.5 capitalize bg-navy-50 text-navy-900 border-charcoal-border">
+            <Badge key={cat} variant="secondary" className="text-[11px] px-2.5 py-0.5 capitalize bg-[#F6F6F6] text-black border-transparent font-medium rounded-md">
               {cat.replace('-', ' ')}
             </Badge>
           ))}
           {companion.categories.length > 3 && (
-            <span className="text-[10px] text-charcoal-muted font-medium">+{companion.categories.length - 3} more</span>
+            <span className="text-[11px] text-neutral-400 font-normal">+{companion.categories.length - 3}</span>
           )}
         </div>
 
         {/* Footer: Rate & Action */}
-        <div className="pt-3.5 border-t border-charcoal-border flex items-center justify-between">
+        <div className="pt-3.5 border-t border-[#EEEEEE] flex items-center justify-between">
           <div>
-            <span className="text-[10px] text-charcoal-muted block uppercase font-bold tracking-wider">Rate</span>
-            <span className="text-base font-bold text-navy-900">
+            <span className="text-[10px] text-neutral-400 block uppercase font-bold tracking-wider">Rate</span>
+            <span className="text-base font-bold text-black">
               {formatCurrency(companion.hourlyRate)}
-              <span className="text-xs font-normal text-charcoal-muted">/hr</span>
+              <span className="text-xs font-normal text-neutral-500">/hr</span>
             </span>
           </div>
 
           <div className="flex items-center gap-2">
             <Link href={`/companions/${companion.id}`}>
-              <Button variant="outline" size="sm" className="text-xs font-semibold h-9">
+              <Button variant="ghost" size="sm" className="text-xs font-medium h-9 rounded-full bg-[#F6F6F6] text-black hover:bg-[#EEEEEE]">
                 Profile
               </Button>
             </Link>
             <Button
               size="sm"
               onClick={() => onBook?.(companion)}
-              className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 text-xs font-bold h-9 gap-1 shadow-subtle"
+              className="bg-black hover:bg-neutral-800 text-white text-xs font-medium h-9 rounded-full gap-1"
             >
-              Book Now <ArrowRight className="h-3 w-3" />
+              Book <ArrowRight className="h-3 w-3" />
             </Button>
           </div>
         </div>

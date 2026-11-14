@@ -16,68 +16,108 @@ const config: Config = {
       },
     },
     extend: {
+      fontFamily: {
+        sans: [
+          '"Uber Move"',
+          '"UberMoveText"',
+          'system-ui',
+          '-apple-system',
+          '"Segoe UI"',
+          'Roboto',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+        uber: [
+          '"Uber Move"',
+          '"UberMoveText"',
+          'system-ui',
+          '-apple-system',
+          '"Segoe UI"',
+          'Roboto',
+          'Helvetica',
+          'Arial',
+          'sans-serif',
+        ],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
-        // Mobility Theme System Tokens
+        // Uber Black & White Palette
+        uber: {
+          black: '#000000',
+          white: '#FFFFFF',
+          gray: {
+            50: '#F6F6F6',
+            100: '#EEEEEE',
+            200: '#E2E2E2',
+            300: '#CBCBCB',
+            400: '#AFAFAF',
+            500: '#757575',
+            600: '#5E5E5E',
+            700: '#333333',
+            800: '#1F1F1F',
+            900: '#000000',
+          },
+        },
         navy: {
-          50: '#F7F8FA',
-          100: '#E8EBF0',
-          200: '#D5DAE3',
-          300: '#A9B4C7',
-          400: '#737B89',
-          500: '#4D586E',
-          600: '#2E3B56',
-          700: '#20242C',
-          800: '#1A2949',
-          900: '#14213D', // Deep Navy (Primary)
-          950: '#0E172B',
+          50: '#F6F6F6',
+          100: '#EEEEEE',
+          200: '#E2E2E2',
+          300: '#CBCBCB',
+          400: '#757575',
+          500: '#5E5E5E',
+          600: '#333333',
+          700: '#1F1F1F',
+          800: '#121212',
+          900: '#000000', // Jet Black
+          950: '#000000',
         },
         charcoal: {
-          DEFAULT: '#20242C', // Primary Text
-          muted: '#737B89',   // Secondary Text
-          border: '#E8EBF0',  // Borders
-          surface: '#F7F8FA', // Background
+          DEFAULT: '#000000', // Black
+          muted: '#5E5E5E',   // Secondary Grey
+          border: '#EEEEEE',  // Light Grey Border
+          surface: '#F6F6F6', // Uber Grey Background
         },
         primary: {
-          DEFAULT: '#14213D', // Deep Navy
+          DEFAULT: '#000000', // Jet Black
           foreground: '#FFFFFF',
-          50: '#F7F8FA',
-          100: '#E8EBF0',
-          500: '#2583E8', // Map Accent
-          600: '#14213D',
-          700: '#0E172B',
+          50: '#F6F6F6',
+          100: '#EEEEEE',
+          500: '#000000',
+          600: '#000000',
+          700: '#000000',
         },
         secondary: {
-          DEFAULT: '#FFFFFF', // White
-          foreground: '#20242C',
+          DEFAULT: '#F6F6F6',
+          foreground: '#000000',
         },
         accent: {
-          DEFAULT: '#FACC15', // Mobility Yellow (Accent)
-          foreground: '#14213D',
-          hover: '#EAB308',
-          light: '#FEFCE8',
+          DEFAULT: '#000000',
+          foreground: '#FFFFFF',
+          hover: '#333333',
+          light: '#F6F6F6',
           emerald: '#16A36A',
           teal: '#0D9488',
         },
         yellow: {
-          DEFAULT: '#FACC15',
-          50: '#FEFCE8',
-          100: '#FEF9C3',
-          200: '#FEF08A',
-          300: '#FDE047',
-          400: '#FACC15', // Vibrant Mobility Yellow
-          500: '#EAB308', // Deep Mobility Yellow
-          600: '#CA8A04',
-          700: '#A16207',
-          warm: '#F5A623',
+          DEFAULT: '#000000',
+          50: '#F6F6F6',
+          100: '#EEEEEE',
+          200: '#E2E2E2',
+          300: '#CBCBCB',
+          400: '#000000',
+          500: '#000000',
+          600: '#000000',
+          700: '#000000',
+          warm: '#000000',
         },
         map: {
-          accent: '#2583E8', // Map Accent
-          route: '#2583E8',
+          accent: '#000000',
+          route: '#000000',
         },
         destructive: {
           DEFAULT: 'hsl(var(--destructive))',
