@@ -114,7 +114,7 @@ export default function BookingDetailsPage() {
           <Card className="rounded-3xl border border-charcoal-border bg-white p-6 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-card">
             <div className="flex items-center gap-3.5">
               <div className="h-12 w-12 rounded-2xl bg-navy-900 text-white flex items-center justify-center shrink-0 shadow-subtle">
-                <KeyRound className="h-6 w-6 text-accent" />
+                <KeyRound className="h-6 w-6 text-amber-400" />
               </div>
               <div>
                 <h3 className="font-bold text-navy-900 text-base">In-Person Meeting PIN</h3>

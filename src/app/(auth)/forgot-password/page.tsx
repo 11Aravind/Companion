@@ -2,10 +2,11 @@
 
 import * as React from 'react';
 import Link from 'next/link';
-import { HeartHandshake, Mail, ArrowLeft, CheckCircle2, AlertCircle } from 'lucide-react';
+import { Mail, ArrowLeft, CheckCircle2, AlertCircle } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { CompanionLogo } from '@/components/ui/logo';
 import { resetPasswordAction } from '../actions';
 
 export default function ForgotPasswordPage() {
@@ -34,11 +35,9 @@ export default function ForgotPasswordPage() {
   return (
     <div className="min-h-screen bg-[#F7F8FA] flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-charcoal">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <Link href="/" className="inline-flex items-center gap-2 mb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-900 text-white shadow-subtle">
-            <HeartHandshake className="h-6 w-6 text-accent" />
-          </div>
-        </Link>
+        <div className="flex justify-center mb-5">
+          <CompanionLogo href="/" size="lg" />
+        </div>
         <h2 className="text-2xl font-black text-navy-900 tracking-tight">Reset your password</h2>
         <p className="mt-1 text-xs text-charcoal-muted">
           Enter your registered email and we'll send you instructions to reset your password
@@ -49,7 +48,7 @@ export default function ForgotPasswordPage() {
         <Card className="rounded-3xl border border-charcoal-border shadow-card bg-white p-6 sm:p-8">
           {isSubmitted ? (
             <div className="text-center space-y-3 py-4">
-              <CheckCircle2 className="h-10 w-10 text-accent mx-auto" />
+              <CheckCircle2 className="h-10 w-10 text-emerald-600 mx-auto" />
               <h3 className="font-bold text-navy-900 text-base">Password Reset Link Sent</h3>
               <p className="text-xs text-charcoal-muted leading-relaxed">
                 If an account exists for <span className="font-bold text-navy-900">{email}</span>, you will receive an email shortly with reset instructions.

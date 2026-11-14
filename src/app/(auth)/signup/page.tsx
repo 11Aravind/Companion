@@ -3,10 +3,11 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { HeartHandshake, Mail, Lock, User, Phone, ArrowRight, ShieldCheck, AlertCircle, MapPin } from 'lucide-react';
+import { Mail, Lock, User, Phone, ArrowRight, ShieldCheck, AlertCircle, MapPin } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { CompanionLogo } from '@/components/ui/logo';
 import { signUpAction } from '../actions';
 
 function SignupForm() {
@@ -49,11 +50,9 @@ function SignupForm() {
   return (
     <div className="min-h-screen bg-[#F7F8FA] flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-charcoal">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <Link href="/" className="inline-flex items-center gap-2 mb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-900 text-white shadow-subtle">
-            <HeartHandshake className="h-6 w-6 text-accent" />
-          </div>
-        </Link>
+        <div className="flex justify-center mb-5">
+          <CompanionLogo href="/" size="lg" />
+        </div>
         <h2 className="text-2xl font-black text-navy-900 tracking-tight">Create your account</h2>
         <p className="mt-1 text-xs text-charcoal-muted">
           Join the community for verified companion care and accompaniment
@@ -175,8 +174,8 @@ function SignupForm() {
                   />
                 </div>
 
-                <div className="p-3 bg-accent-light border border-accent/20 rounded-xl text-xs text-accent flex items-start gap-2">
-                  <ShieldCheck className="h-4 w-4 text-accent shrink-0 mt-0.5" />
+                <div className="p-3 bg-emerald-50 border border-emerald-200 rounded-xl text-xs text-emerald-800 flex items-start gap-2">
+                  <ShieldCheck className="h-4 w-4 text-emerald-600 shrink-0 mt-0.5" />
                   <span>
                     Companions undergo government ID verification before receiving live bookings.
                   </span>

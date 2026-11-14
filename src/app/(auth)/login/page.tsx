@@ -3,10 +3,11 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { HeartHandshake, Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
+import { Mail, Lock, ArrowRight, AlertCircle } from 'lucide-react';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
+import { CompanionLogo } from '@/components/ui/logo';
 import { signInAction } from '../actions';
 
 function LoginForm() {
@@ -43,11 +44,9 @@ function LoginForm() {
   return (
     <div className="min-h-screen bg-[#F7F8FA] flex flex-col justify-center py-12 sm:px-6 lg:px-8 text-charcoal">
       <div className="sm:mx-auto sm:w-full sm:max-w-md text-center">
-        <Link href="/" className="inline-flex items-center gap-2 mb-4">
-          <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-navy-900 text-white shadow-subtle">
-            <HeartHandshake className="h-6 w-6 text-accent" />
-          </div>
-        </Link>
+        <div className="flex justify-center mb-5">
+          <CompanionLogo href="/" size="lg" />
+        </div>
         <h2 className="text-3xl font-black tracking-tight text-navy-900">Welcome back</h2>
         <p className="mt-1 text-xs text-charcoal-muted">
           Sign in to your Companion platform account

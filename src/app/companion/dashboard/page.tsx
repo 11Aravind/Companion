@@ -142,7 +142,7 @@ export default function CompanionDashboardPage() {
                 <Card className="rounded-3xl border border-charcoal-border bg-white p-6 shadow-card">
                   <div className="max-w-md mx-auto text-center space-y-3">
                     <div className="h-12 w-12 rounded-2xl bg-navy-900 text-white flex items-center justify-center mx-auto shadow-subtle">
-                      <KeyRound className="h-6 w-6 text-accent" />
+                      <KeyRound className="h-6 w-6 text-amber-400" />
                     </div>
                     <h3 className="font-bold text-navy-900 text-base">Enter Customer Verification PIN</h3>
                     <p className="text-xs text-charcoal-muted">
