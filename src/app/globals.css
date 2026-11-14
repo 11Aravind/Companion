@@ -28,9 +28,9 @@
     --muted: 220 14% 95%;
     --muted-foreground: 218 9% 49%;
 
-    /* Accent: Fresh Green - #16A36A */
-    --accent: 156 76% 36%;
-    --accent-foreground: 0 0% 100%;
+    /* Accent: High-Contrast Mobility Yellow - #FACC15 */
+    --accent: 48 96% 53%;
+    --accent-foreground: 221 51% 16%;
 
     --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;

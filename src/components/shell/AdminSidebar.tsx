@@ -42,11 +42,11 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
         <div className="h-16 flex items-center justify-between px-6 border-b border-[#1B2C4F]">
           <div className="flex items-center gap-2.5">
             <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white shadow-subtle border border-white/10">
-              <HeartHandshake className="h-5 w-5 text-accent" />
+              <HeartHandshake className="h-5 w-5 text-yellow-400" />
             </div>
             <div>
               <span className="text-base font-bold tracking-tight text-white block">Companion</span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-accent block -mt-1">
+              <span className="text-[10px] font-bold uppercase tracking-wider text-yellow-400 block -mt-1">
                 Admin Console
               </span>
             </div>
@@ -82,10 +82,10 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
                     : 'text-[#A9B4C7] hover:bg-white/5 hover:text-white'
                 )}
               >
-                <Icon className={cn('h-4 w-4 shrink-0', isActive ? 'text-accent' : 'text-[#A9B4C7]')} />
+                <Icon className={cn('h-4 w-4 shrink-0', isActive ? 'text-yellow-400' : 'text-[#A9B4C7]')} />
                 <span>{item.label}</span>
                 {isActive && (
-                  <span className="ml-auto h-1.5 w-1.5 rounded-full bg-accent" />
+                  <span className="ml-auto h-1.5 w-1.5 rounded-full bg-yellow-400" />
                 )}
               </Link>
             );
@@ -96,7 +96,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
       {/* Footer Info */}
       <div className="p-4 border-t border-[#1B2C4F] text-xs text-[#A9B4C7]">
         <div className="flex items-center gap-2">
-          <span className="h-2 w-2 rounded-full bg-accent animate-pulse" />
+          <span className="h-2 w-2 rounded-full bg-yellow-400 animate-pulse" />
           <p className="font-semibold text-white">System Status: Optimal</p>
         </div>
         <p className="text-[11px] mt-0.5 text-[#737B89]">Realtime & GPS Telemetry Active</p>

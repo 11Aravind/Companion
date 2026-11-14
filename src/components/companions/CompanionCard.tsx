@@ -100,7 +100,7 @@ export function CompanionCard({
             <Button
               size="sm"
               onClick={() => onBook?.(companion)}
-              className="bg-navy-900 hover:bg-navy-800 text-white text-xs font-bold h-9 gap-1"
+              className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 text-xs font-bold h-9 gap-1 shadow-subtle"
             >
               Book Now <ArrowRight className="h-3 w-3" />
             </Button>

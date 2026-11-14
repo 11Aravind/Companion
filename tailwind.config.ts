@@ -56,12 +56,24 @@ const config: Config = {
           foreground: '#20242C',
         },
         accent: {
-          DEFAULT: '#16A36A', // Fresh Green (Accent)
-          foreground: '#FFFFFF',
-          hover: '#138A59',
-          light: '#E8F6F0',
+          DEFAULT: '#FACC15', // Mobility Yellow (Accent)
+          foreground: '#14213D',
+          hover: '#EAB308',
+          light: '#FEFCE8',
           emerald: '#16A36A',
           teal: '#0D9488',
+        },
+        yellow: {
+          DEFAULT: '#FACC15',
+          50: '#FEFCE8',
+          100: '#FEF9C3',
+          200: '#FEF08A',
+          300: '#FDE047',
+          400: '#FACC15', // Vibrant Mobility Yellow
+          500: '#EAB308', // Deep Mobility Yellow
+          600: '#CA8A04',
+          700: '#A16207',
+          warm: '#F5A623',
         },
         map: {
           accent: '#2583E8', // Map Accent

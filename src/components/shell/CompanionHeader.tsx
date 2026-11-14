@@ -49,7 +49,7 @@ export function CompanionHeader({
           <div className="flex items-center gap-2.5 sm:gap-3">
             <Link href="/companion/dashboard" className="flex items-center gap-2 shrink-0">
               <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-navy-900 text-white shadow-subtle">
-                <HeartHandshake className="h-5 w-5 text-accent" />
+                <HeartHandshake className="h-5 w-5 text-yellow-400" />
               </div>
               <span className="text-lg font-bold text-navy-900 hidden xs:inline">Companion</span>
             </Link>

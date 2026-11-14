@@ -10,8 +10,9 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-navy-900 text-white hover:bg-navy-800 shadow-subtle',
         primary: 'bg-navy-900 text-white hover:bg-navy-800 shadow-subtle',
-        accent: 'bg-accent text-white hover:bg-accent-hover shadow-subtle',
-        emerald: 'bg-accent text-white hover:bg-accent-hover shadow-subtle',
+        accent: 'bg-yellow-400 text-navy-900 hover:bg-yellow-500 font-bold shadow-subtle',
+        yellow: 'bg-yellow-400 text-navy-900 hover:bg-yellow-500 font-bold shadow-subtle',
+        emerald: 'bg-emerald-600 text-white hover:bg-emerald-700 shadow-subtle',
         destructive: 'bg-destructive text-destructive-foreground hover:bg-destructive/90 shadow-subtle',
         danger: 'bg-rose-600 text-white hover:bg-rose-700 shadow-subtle',
         outline: 'border border-charcoal-border bg-white text-charcoal hover:bg-navy-50 hover:border-navy-200',

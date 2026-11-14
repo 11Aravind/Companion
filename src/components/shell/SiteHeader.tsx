@@ -16,7 +16,7 @@ export function SiteHeader() {
         {/* Brand Logo */}
         <Link href="/" className="flex items-center gap-2.5">
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy-900 text-white shadow-subtle shrink-0">
-            <HeartHandshake className="h-5 w-5 text-accent" />
+            <HeartHandshake className="h-5 w-5 text-yellow-400" />
           </div>
           <div>
             <span className="text-xl font-bold tracking-tight text-navy-900">Companion</span>
@@ -41,7 +41,7 @@ export function SiteHeader() {
             href="/#safety"
             className="flex items-center gap-1.5 hover:text-navy-900 transition-colors"
           >
-            <ShieldCheck className="h-4 w-4 text-accent" />
+            <ShieldCheck className="h-4 w-4 text-yellow-500" />
             Safety & Verification
           </Link>
         </nav>
@@ -55,7 +55,7 @@ export function SiteHeader() {
               </Button>
             </Link>
             <Link href="/signup">
-              <Button size="sm" className="bg-navy-900 hover:bg-navy-800 text-white font-semibold">
+              <Button size="sm" className="bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold shadow-subtle">
                 Get Started <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Button>
             </Link>
@@ -117,7 +117,7 @@ export function SiteHeader() {
               </Button>
             </Link>
             <Link href="/signup" onClick={() => setMobileMenuOpen(false)} className="w-full">
-              <Button className="w-full h-11 bg-navy-900 hover:bg-navy-800 text-white font-bold rounded-xl shadow-subtle">
+              <Button className="w-full h-11 bg-yellow-400 hover:bg-yellow-500 text-navy-900 font-bold rounded-xl shadow-subtle">
                 Get Started <ArrowRight className="ml-1.5 h-4 w-4" />
               </Button>
             </Link>

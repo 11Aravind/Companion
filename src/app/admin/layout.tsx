@@ -28,7 +28,7 @@ export default function AdminLayout({ children }: { children: React.ReactNode })
           </div>
 
           <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <span className="text-[11px] sm:text-xs bg-accent-light text-accent border border-accent/20 font-bold px-3 py-1 rounded-full">
+            <span className="text-[11px] sm:text-xs bg-yellow-100 text-yellow-900 border border-yellow-300 font-bold px-3 py-1 rounded-full">
               Production System
             </span>
           </div>
