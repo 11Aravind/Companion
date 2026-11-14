@@ -1,0 +1,27 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 180 180" fill="none">
+  <!-- Solid Black Squircle Container -->
+  <rect width="180" height="180" rx="45" fill="#000000" />
+  
+  <!-- Modern Geometric Companion Emblem in Pure White -->
+  <path
+    d="M128 58 C114 46 98 42 80 42 C50 42 28 64 28 90 C28 118 50 138 80 138 C100 138 116 128 128 114"
+    stroke="#FFFFFF"
+    stroke-width="15"
+    stroke-linecap="round"
+  />
+  
+  <!-- Traveler Node -->
+  <circle cx="75" cy="106" r="12" fill="#FFFFFF" />
+  
+  <!-- Companion Node -->
+  <circle cx="106" cy="72" r="12" fill="#FFFFFF" />
+  
+  <!-- Synchronized Accompaniment Vector Link -->
+  <path
+    d="M75 106 L106 72"
+    stroke="#FFFFFF"
+    stroke-width="12"
+    stroke-linecap="round"
+  />
+</svg>
+

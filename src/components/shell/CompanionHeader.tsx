@@ -16,6 +16,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useUser } from '@/hooks/useUser';
 import { NotificationBell } from '@/components/notifications/NotificationBell';
+import { CompanionLogo } from '@/components/ui/logo';
 
 interface CompanionHeaderProps {
   isOnline?: boolean;
@@ -47,11 +48,8 @@ export function CompanionHeader({
         <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
           {/* Brand & Companion Portal Tag */}
           <div className="flex items-center gap-2.5 sm:gap-3">
-            <Link href="/companion/dashboard" className="flex items-center gap-2 shrink-0">
-              <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-navy-900 text-white shadow-subtle">
-                <HeartHandshake className="h-5 w-5 text-yellow-400" />
-              </div>
-              <span className="text-lg font-bold text-navy-900 hidden xs:inline">Companion</span>
+            <Link href="/companion/dashboard" className="flex items-center shrink-0">
+              <CompanionLogo variant="light" size="sm" />
             </Link>
             <Badge
               variant="secondary"

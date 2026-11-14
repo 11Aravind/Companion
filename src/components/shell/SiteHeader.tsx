@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { HeartHandshake, ShieldCheck, ArrowRight, Menu, X, Compass, Search } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { CompanionLogo } from '@/components/ui/logo';
 
 export function SiteHeader() {
   const pathname = usePathname();
@@ -14,8 +15,8 @@ export function SiteHeader() {
     <header className="sticky top-0 z-40 w-full border-b border-neutral-900 bg-black text-white">
       <div className="container mx-auto flex h-16 items-center justify-between px-4 sm:px-6">
         {/* Brand Logo */}
-        <Link href="/" className="flex items-center gap-3">
-          <span className="text-2xl font-bold tracking-tight text-white font-uber">Companion</span>
+        <Link href="/" className="flex items-center">
+          <CompanionLogo variant="dark" size="md" />
         </Link>
 
         {/* Desktop Navigation */}

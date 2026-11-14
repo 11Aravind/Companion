@@ -15,6 +15,7 @@ import {
   X,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
+import { CompanionLogo } from '@/components/ui/logo';
 
 const navItems = [
   { label: 'Overview', href: '/admin/dashboard', icon: LayoutDashboard },
@@ -41,15 +42,7 @@ export function AdminSidebar({ isOpen, onClose }: AdminSidebarProps) {
         {/* Brand */}
         <div className="h-16 flex items-center justify-between px-6 border-b border-[#1B2C4F]">
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white/10 text-white shadow-subtle border border-white/10">
-              <HeartHandshake className="h-5 w-5 text-yellow-400" />
-            </div>
-            <div>
-              <span className="text-base font-bold tracking-tight text-white block">Companion</span>
-              <span className="text-[10px] font-bold uppercase tracking-wider text-yellow-400 block -mt-1">
-                Admin Console
-              </span>
-            </div>
+            <CompanionLogo variant="dark" size="sm" />
           </div>
 
           {/* Close button for mobile */}

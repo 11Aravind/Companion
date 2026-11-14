@@ -13,6 +13,15 @@ export const metadata: Metadata = {
   title: 'Companion — Personal Companion Booking Platform',
   description:
     'Modern, secure personal companion platform for hospital visits, shopping assistance, dining, travel, fitness, and social events. Verified companions with real-time GPS tracking and in-person PIN verification.',
+  icons: {
+    icon: [
+      { url: '/favicon.svg', type: 'image/svg+xml' },
+      { url: '/favicon.ico' },
+    ],
+    apple: [
+      { url: '/apple-icon.svg', type: 'image/svg+xml' },
+    ],
+  },
   keywords: [
     'personal companion',
     'companion booking',
