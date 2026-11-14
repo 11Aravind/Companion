@@ -42,6 +42,16 @@ export default function CompanionProfileDetailsPage() {
   const [isSubmitting, setIsSubmitting] = React.useState(false);
   const [bookingConfirmed, setBookingConfirmed] = React.useState(false);
 
+  // Automatically open booking modal if arriving from Book Now button (?book=true)
+  React.useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const searchParams = new URLSearchParams(window.location.search);
+      if (searchParams.get('book') === 'true') {
+        setIsBookingOpen(true);
+      }
+    }
+  }, []);
+
   // Companion Mock Data
   const companion = {
     id: params.id as string,

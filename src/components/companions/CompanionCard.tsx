@@ -97,13 +97,20 @@ export function CompanionCard({
                 Profile
               </Button>
             </Link>
-            <Button
-              size="sm"
-              onClick={() => onBook?.(companion)}
-              className="bg-black hover:bg-neutral-800 text-white text-xs font-medium h-9 rounded-full gap-1"
-            >
-              Book <ArrowRight className="h-3 w-3" />
-            </Button>
+            <Link href={`/companions/${companion.id}?book=true`}>
+              <Button
+                size="sm"
+                onClick={(e) => {
+                  if (onBook) {
+                    e.preventDefault();
+                    onBook(companion);
+                  }
+                }}
+                className="bg-black hover:bg-neutral-800 text-white text-xs font-medium h-9 rounded-full gap-1"
+              >
+                Book <ArrowRight className="h-3 w-3" />
+              </Button>
+            </Link>
           </div>
         </div>
       </CardContent>
